@@ -22,15 +22,15 @@ The completed exercise is due on <>.
 
 1. What are your previous experiences with data analytics, R, and Git? Include both formal and informal training.
 
-> Answer: 
+> Answer: I took a statistics course in undergrad that was solely focused on R, and have used it in multiples classes before and after that, like calculus and a lot of bio courses where we had to analyze data. Each time I have to relearn a lot because I never use it constantly or consistently enough.
 
 2. Are there any components of the course about which you feel confident?
 
-> Answer: 
+> Answer: I'm pretty confident that I will remember a lot of the easier coding things (or be able to figure them out)
 
 3. Are there any components of the course about which you feel apprehensive?
 
-> Answer: 
+> Answer: I have never used a lot of the things we had to download at the beginning so I'm a little worried about what those might entail. Plus I just find R really annoying because of how specific and finicky coding is. Plus this course just sounds like it's going to be really intense. 
 
 
 ## 2) GitHub
