@@ -30,7 +30,7 @@ The completed exercise is due on 1/17/22.
 
 3. Are there any components of the course about which you feel apprehensive?
 
-> Answer: I have never used a lot of the things we had to download at the beginning so I'm a little worried about what those might entail. Plus I just find R really annoying because of how specific and finicky coding is. Plus this course just sounds like it's going to be really intense. Plus github is already giving me a lot of trouble. 
+> Answer: I have never used a lot of the things we had to download at the beginning so I'm a little worried about what those might entail. I just find R  annoying because of how specific and finicky coding is and this course just sounds like it might be  intense. Plus github is already giving me a lot of trouble, but thanks to John progress is happening! 
 
 
 ## 2) GitHub
