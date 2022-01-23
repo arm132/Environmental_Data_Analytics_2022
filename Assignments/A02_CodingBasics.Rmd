@@ -32,6 +32,8 @@ This exercise accompanies the lessons in Environmental Data Analytics on coding 
 
 ```{r}
 #1. 
+onetohundred<-seq(1,100,4) #from, to, by 
+onetohundred
 
 #2. 
 
