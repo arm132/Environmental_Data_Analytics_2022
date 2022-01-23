@@ -32,14 +32,15 @@ This exercise accompanies the lessons in Environmental Data Analytics on coding 
 
 ```{r}
 #1. 
-onetohundred<-seq(1,100,4) #from, to, by 
+onetohundred<-seq(1,100,4) #creating a sequence: from, to, by 
 onetohundred
 
 #2. 
-mean(onetohundred)
-median(onetohundred)
+mean(onetohundred) #finding mean
+median(onetohundred) #finding median
 
 #3. 
+
 
 ```
 
