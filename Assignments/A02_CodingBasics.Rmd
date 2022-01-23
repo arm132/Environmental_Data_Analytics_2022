@@ -40,7 +40,7 @@ mean(onetohundred) #finding mean
 median(onetohundred) #finding median
 
 #3. 
-
+mean(onetohundred)>median(onetohundred) #is mean greater than median
 
 ```
 
