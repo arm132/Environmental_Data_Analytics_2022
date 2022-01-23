@@ -36,6 +36,8 @@ onetohundred<-seq(1,100,4) #from, to, by
 onetohundred
 
 #2. 
+mean(onetohundred)
+median(onetohundred)
 
 #3. 
 
