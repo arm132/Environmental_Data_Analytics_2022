@@ -55,6 +55,13 @@ mean(onetohundred)>median(onetohundred) #is mean greater than median
 8. Label the columns of your data frame with informative titles.
 
 ```{r}
+#5. 
+
+#6. 
+
+#7. 
+
+#8. 
 
 ```
 
