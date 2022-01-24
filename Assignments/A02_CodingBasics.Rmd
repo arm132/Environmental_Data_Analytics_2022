@@ -61,7 +61,7 @@ studentname
 
 class(studentname)
 
-testscores<-c(80, 70, 90, 60) #numeric
+testscores<-c(80, 70, 90, 49) #numeric
 testscores
 
 class(testscores)
@@ -81,13 +81,15 @@ studentscorepassed
 
 9. QUESTION: How is this data frame different from a matrix?
 
-> Answer: Matrices can only hold one kind of data, data frames can contain multiple 
+> Answer: Matrices can only hold one kind of data, data frames can contain multiple classes of data. 
 
 10. Create a function with an if/else statement. Your function should determine whether a test score is a passing grade of 50 or above (TRUE or FALSE). You will need to choose either the `if` and `else` statements or the `ifelse` statement. Hint: Use `print`, not `return`. The name of your function should be informative.
 
 11. Apply your function to the vector with test scores that you created in number 5. 
 
 ```{r}
+exam_pass<-ifelse(testscores>=50,"pass","fail")
+exam_pass
 
 ```
 
