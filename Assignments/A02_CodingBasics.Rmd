@@ -56,16 +56,21 @@ mean(onetohundred)>median(onetohundred) #is mean greater than median
 
 ```{r}
 #5. 
-studentname<-c("Rory"=1, "Michelle"=2, "Sam"=3, "Corey"=4) #
+studentname<-c("Rory"=1, "Michelle"=2, "Sam"=3, "Corey"=4) #numeric
 studentname
 
-testscores<-c(80, 70, 90, 60) #
+class(studentname)
+
+testscores<-c(80, 70, 90, 60) #numeric
 testscores
 
-passed<-c(TRUE, TRUE, TRUE, FALSE) #
+class(testscores)
+
+passed<-c(TRUE, TRUE, TRUE, FALSE) #logical
 passed
 
-#6. label 
+class(passed)
+
 
 #7. 
 
