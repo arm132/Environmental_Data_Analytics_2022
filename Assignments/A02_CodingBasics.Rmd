@@ -95,4 +95,4 @@ exam_pass
 
 12. QUESTION: Which option of `if` and `else` vs. `ifelse` worked? Why?
 
-> Answer: 
+> Answer: ifelse worked because I wanted anything greater than 50 to count as a pass, and everything else to be a fail. So if greater than 50 pass, else fail. 
