@@ -71,9 +71,10 @@ passed
 
 class(passed)
 
-
 #7. 
 
+studentscorepassed<-cbind(studentname,testscores,passed)
+studentscorepassed
 #8. 
 
 ```
