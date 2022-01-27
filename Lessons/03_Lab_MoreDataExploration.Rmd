@@ -37,22 +37,22 @@ vector2
 vector3 <- c(TRUE,TRUE,TRUE,FALSE,TRUE,FALSE) #logical vector
 vector3
 
-vector1[3] # 
+vector1[3] #extract a single value by supplying location 
 
 # Matrices ----
-matrix1 <- matrix(1:20, nrow = 5,ncol = 4) # 
+matrix1 <- matrix(1:20, nrow = 5,ncol = 4) # 1:20 generates numbers 1-20, next indicated how many rows and columns 
 matrix1
-matrix2 <- matrix(1:20, nrow = 5, ncol = 4, byrow = TRUE) #
+matrix2 <- matrix(1:20, nrow = 5, ncol = 4, byrow = TRUE) #byrow means count across instead of down, rows*columns must = matrix #
 matrix2
 matrix3 <- matrix(1:20, nrow = 5, ncol = 4, byrow = TRUE, # return after comma continues the line
                   dimnames = list(c("uno", "dos", "tres", "cuatro", "cinco"), 
-                                  c("un", "deux", "trois", "cat"))) #
+                                  c("un", "deux", "trois", "cat"))) #add dimnames, dimension names, so we add names/labels for rows and columns, means we can pull things easier
 
-matrix1[4, ] #
-matrix1[ , 3] #
-matrix1[c(12, 14)] #
-matrix1[c(12:14)] #
-matrix1[2:4, 1:3] #
+matrix1[4, ] #extracting values from matrices, [row, column]leaving blank will just return whole row, you can also use list names added with dimnames
+matrix1[ , 3] #or whole column 
+matrix1[c(12, 14)] #adding c means get 12th and 14th items
+matrix1[c(12:14)] #items 12 through 14
+matrix1[2:4, 1:3] #labeled weird in console 
 
 cells <- c(1, 26, 24, 68)
 rnames <- c("R1", "R2")
@@ -63,18 +63,19 @@ matrix4
 
 # Lists ---- 
 list1 <- list(name = "Maria", mynumbers = vector1, mymatrix = matrix1, age = 5.3); list1
-list1[[2]]
+list1[[2]] #why do you use a list? if you want a collection of data frames, you can also call using list1$mynumbers (for examples) 
 
 # Data Frames ----
-d <- c(1, 2, 3, 4) # What type of vector?
-e <- c("red", "white", "red", NA) # What type of vector?
-f <- c(TRUE, TRUE, TRUE, FALSE) # What type of vector?
-dataframe1 <- data.frame(d,e,f) #
+d <- c(1, 2, 3, 4) # What type of vector? Numeric 
+e <- c("red", "white", "red", NA) # What type of vector? Character
+f <- c(TRUE, TRUE, TRUE, FALSE) # What type of vector? Logical
+dataframe1 <- data.frame("IDx"=d,e,f) #assign name to d
 names(dataframe1) <- c("ID","Color","Passed"); View(dataframe1) # 
 
-dataframe1[1:2,] # 
+dataframe1[1:2,] # see rows in data frame 
 dataframe1[c("ID","Passed")] # 
 dataframe1$ID
+#we've mostly been using basic r so far, but gonna start using tidyverse soon 
 
 ```
 Question: How do the different types of data appear in the Environment tab?
@@ -90,28 +91,43 @@ Question: In the R chunk below, write "dataframe1$". Press `tab` after you type 
 
 ### Coding challenge
 
-Find a ten-day forecast of temperatures (Fahrenheit) for Durham, North Carolina. Create two vectors, one representing the high temperature on each of the ten days and one representing the low.
+Find a ten-day forecast of temperatures (Fahrenheit) for Durham, North Carolina. Create two vectors, one representing the high temperature on each of the ten days and one representing the low. in fa
 
 ```{r}
-
+highsF<-c(45,50,34,43,51,54,59,66,57,42)
+highsF
+lowsF<-c(27,27,15,25,27,35,47,53,30,22)
+lowsF
 ```
 
 Now, create two additional vectors that include the ten-day forecast for the high and low temperatures in Celsius. Use a function to create the two new vectors from your existing ones in Fahrenheit.
 
 ```{r}
+FtoC<- function(temp_F) {
+  temp_C<-(temp_F-32*5/9)
+  return(temp_C)
+}
 
+
+highsC<-FtoC(highsF)
+highsC
+lowsC<-FtoC(lowsF)
+lowsC
 ```
 
 Combine your four vectors into a data frame and add informative column names.
 
 ```{r}
-
+highandlow<-cbind(highsF,highsC,lowsF,lowsC)
+colnames(highandlow)<-c("High F", "High C", "Low F", "Low C" )
+highandlow
 ```
 
 Use the common functions `summary` and `sd` to obtain basic data summaries of the ten-day forecast. How would you call these functions differently for the entire data frame vs. a single column? Attempt to demonstrate both options below.
 
 ```{r}
-
+summary(highandlow)
+#sd(highandlow$highsF) not sure why this isn't working, check back later
 ```
 
 ### Date objects
@@ -154,13 +170,13 @@ library(lubridate)
 #Ex1
 str_today <- "2021-feb-3"
 #Since the format is year-month-day we will use function ymd()
-date_obj_today <- ymd(str_today)
+date_obj_today <- ymd(str_today) #year month date
 date_obj_today
 
 #Ex2
 str_today <- "21-feb-3"
 #Sine the format is year-month-day we will use function ymd()
-date_obj_today <- ymd(str_today)
+date_obj_today <- ymd(str_today) #you can change the format as long as they match (like month, year day)
 date_obj_today
 
 #there are other similar functions ydm(), mdy(), etc
