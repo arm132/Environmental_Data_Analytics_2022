@@ -17,7 +17,7 @@ This exercise accompanies the lessons in Environmental Data Analytics on Data Ex
 4. When you have completed the assignment, **Knit** the text and code into a single PDF file.
 5. After Knitting, submit the completed exercise (PDF file) to the dropbox in Sakai. Add your last name into the file name (e.g., "FirstLast_A03_DataExploration.Rmd") prior to submission.
 
-The completed exercise is due on <>.
+The completed exercise is due on <1/31/22>.
 
 
 ## Set up your R session
