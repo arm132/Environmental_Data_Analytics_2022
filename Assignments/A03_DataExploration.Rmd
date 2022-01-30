@@ -4,17 +4,7 @@ author: "Aurora McCollum, Section #1.001 Th 8:30"
 output: pdf_document
 geometry: margin=2.54cm
 ---
-Notes from lab
 
-include "stringasfactors=true" when importing files ex. read.csv(data, stringsAsFactors=TRUE)
-
-factor means r treats it as a category, has more power
-
-Google duke container to use Rstudion on any computer in a web browser
-
-it's good to restart R (clear everything) to make sure that you have everything in ur script that you need
-
-esc:wq enter 
 
 ## OVERVIEW
 
