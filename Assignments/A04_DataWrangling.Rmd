@@ -42,6 +42,35 @@ Air25_19<-read.csv('/Users/rorymccollum/Desktop/Rdata/Environmental_Data_Analyti
 View(Air25_19)
 
 #2
+
+#Air3_18
+colnames(Air3_18)
+head(Air3_18)
+summary(Air3_18)
+str(Air3_18)
+dim(Air3_18)
+
+#Air3_19
+colnames(Air3_19)
+head(Air3_19)
+summary(Air3_19)
+str(Air3_19)
+dim(Air3_19)
+
+#Air25_18
+colnames(Air25_18)
+head(Air25_18)
+summary(Air25_18)
+str(Air25_18)
+dim(Air25_18)
+
+#Air25_19
+colnames(Air25_19)
+head(Air25_19)
+summary(Air25_19)
+str(Air25_19)
+dim(Air25_19)
+
 ```
 
 ## Wrangle individual datasets to create processed files.
