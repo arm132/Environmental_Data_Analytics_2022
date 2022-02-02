@@ -81,6 +81,18 @@ dim(Air25_19)
 
 ```{r}
 #3
+class(Air3_18$Date)
+Air3_18$Date<-as.Date(Air3_18$Date)
+
+class(Air3_19$Date)
+Air3_19$Date<-as.Date(Air3_19$Date)
+
+class(Air25_18$Date)
+Air25_18$Date<-as.Date(Air25_18$Date)
+
+
+class(Air25_19$Date)
+Air25_19$Date<-as.Date(Air25_19$Date)
 
 #4
 
