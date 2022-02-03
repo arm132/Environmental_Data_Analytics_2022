@@ -81,21 +81,41 @@ dim(Air25_19)
 
 ```{r}
 #3
+
+#Air3_18
 class(Air3_18$Date)
 Air3_18$Date<-as.Date(Air3_18$Date)
 
+#Air3_19
 class(Air3_19$Date)
 Air3_19$Date<-as.Date(Air3_19$Date)
 
+#Air25_18
 class(Air25_18$Date)
 Air25_18$Date<-as.Date(Air25_18$Date)
 
-
+#Air25_19
 class(Air25_19$Date)
 Air25_19$Date<-as.Date(Air25_19$Date)
 
 
 #4
+
+#Air3_18
+Air3_18.processed<-select(Air3_18, Date, DAILY_AQI_VALUE, Site.Name, AQS_PARAMETER_DESC, COUNTY, SITE_LATITUDE, SITE_LONGITUDE)
+view(Air3_18.processed)
+
+#Air3_19
+Air3_19.processed<-select(Air3_19, Date, DAILY_AQI_VALUE, Site.Name, AQS_PARAMETER_DESC, COUNTY, SITE_LATITUDE, SITE_LONGITUDE)
+view(Air3_19.processed)
+
+#Air25_18
+Air25_18.processed<-select(Air25_18, Date, DAILY_AQI_VALUE, Site.Name, AQS_PARAMETER_DESC, COUNTY, SITE_LATITUDE, SITE_LONGITUDE)
+view(Air25_18.processed)
+
+#Air25_19
+Air25_19.processed<-select(Air25_19, Date, DAILY_AQI_VALUE, Site.Name, AQS_PARAMETER_DESC, COUNTY, SITE_LATITUDE, SITE_LONGITUDE)
+view(Air25_19.processed)
 
 #5
 
