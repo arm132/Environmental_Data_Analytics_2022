@@ -40,28 +40,46 @@ NTL.phys.data$sampledate <- as.Date(NTL.phys.data$sampledate, format = "%m/%d/%y
 Filtering allows us to choose certain rows (observations) in our dataset.
 
 ```{r}
-class(NTL.phys.data$lakeid)
-class(NTL.phys.data$depth)
+class(NTL.phys.data$lakeid) #factor
+class(NTL.phys.data$depth) #numeric
 
 # dplyr filtering
-NTL.phys.data.surface <- filter(NTL.phys.data, depth == 0)
+NTL.phys.data.surface <- filter(NTL.phys.data, depth == 0) #double == means set to this year
 
 # Choose multiple conditions to filter
-summary(NTL.phys.data$lakename)
+summary(NTL.phys.data$lakename) #uniquejust returns unique values (names in this case)
 NTL.phys.data.PeterPaul <- filter(NTL.phys.data, lakename %in% c("Paul Lake", "Peter Lake"))
+
+#%in% command goes through every row and looks for specific values in following vector and includes only those 
 
 # Choose a range of conditions of a numeric or integer variable
 summary(NTL.phys.data$daynum)
 NTL.phys.data.JunethruOctober <- filter(NTL.phys.data, daynum %in% c(152:304))
 
+#find a range of days using %in% day 152-304
+
 # Exercise 1: 
 # filter NTL.phys.data for the year 1999
 # what code do you need to use, based on the class of the variable?
 
+summary(NTL.phys.data$year4)
+NTL.phys.data.1999<-filter(NTL.phys.data, year4 ==1999)
 
 # Exercise 2: 
 # filter NTL.phys.data for Tuesday Lake from 1990 through 1999.
 
+NTL.phys.data.1990.1999<-filter(NTL.phys.data, year4 %in% c(1990:1999))
+NTL.phys.data.1990.1999.tuesday<-filter(NTL.phys.data.1990.1999, lakename=="Tuesday Lake")
+
+#How to pipe these? 
+NTL.phys.data.90.99.tuesday2<-
+  NTL.phys.data %>%
+  filter(year4 %in% c(1990:1999)) %>%
+  filter(lakename=="Tuesday Lake")
+
+#Another way to do it 
+
+John.way<-filter(NTL.phys.data, year4 == 1999 & lakename=="Tuesday Lake")
 
 ```
 Question: Why don't we filter using row numbers?
@@ -83,12 +101,25 @@ NTL.phys.data.processed <-
 
 #Exercise 3: Using a pipe filter NTL.phys.data for Tuesday Lake from 1990 through 1999 only for July 
 
+#create a new column, lubridate has a fxn called month??? 
 
+
+#this is wrong but idk what it is
+exercise3<-NTL.phys.data %>%
+  filter(year4 %in% c(1990:1999)) %>%
+  filter(lakename=="Tuesday Lake") %>%
+  filter(month(sampledate)==7) %>%
+  mutate(month= month(sampledate))
+  #filter(month==7)
 
 
 
 #Exercise 4: Using the data from part 3, a pipe and the summarise() function find the mean surface temperature (hints: you will need to add another filter for depth==0). Make sure you eliminate NAs before computing the means
-
+  
+exercise4<-exercise3 %>%
+  filter(depth==0)%>%
+    filter(!is.na(temperature_C))%>% #alternatively: dropna(temperatureC)
+    summarise(mean=mean(temperature_C))
   
 ```
 
@@ -99,8 +130,10 @@ For gather we will use `pivot_longer` and for spread we will use `pivot_wider`.
 ```{r}
 #Exercise 5: gather irradiance data (measured in the water column and measured on the deck of the sampling boat) into one column using pivot_longer
 
+exercise5<-pivot_longer(NTL.phys.data, irradianceWater:irradianceDeck, names_to = "Irradiance")
 
 #Exercise 6: spread temperatureC into more than one column based on the depth
 
+exercise6<-pivot_wider(NTL.phys.data, temperature_C)
 ```
 
