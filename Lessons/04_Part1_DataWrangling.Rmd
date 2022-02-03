@@ -20,6 +20,11 @@ Today we will work with a dataset from the [North Temperate Lakes Long-Term Ecol
 Opening discussion: why might we be interested in long-term observations of temperature, oxygen, and light in lakes?
 
 > Add notes here: 
+arrange, sort column by lowest to highest for ex 
+mutate can combine two columns 
+select: subset columns
+pipes: string commands together 
+
 
 ```{r, message = FALSE}
 getwd()
