@@ -118,7 +118,16 @@ Air25_19.processed<-select(Air25_19, Date, DAILY_AQI_VALUE, Site.Name, AQS_PARAM
 view(Air25_19.processed)
 
 #5
+#5. For the PM2.5 datasets, fill all cells in AQS_PARAMETER_DESC with "PM2.5" (all cells in this column should be identical).
+#Air25_18
 
+Air25_18.processed1<-fill(Air25_18.processed, AQS_PARAMETER_DESC="PM2.5")
+
+
+#Air25_19
+Air25_19.processed1<- (Air25_19.processed, AQS_PARAMETER_DESC="PM2.5")
+
+#6. Save all four processed datasets in the Processed folder. Use the same file names as the raw files but replace "raw" with "processed".
 #6
 
 ```
