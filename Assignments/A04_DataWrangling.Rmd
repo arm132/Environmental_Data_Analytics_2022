@@ -25,6 +25,8 @@ The completed exercise is due on Monday, Feb 7 @ 7:00pm.
 
 ```{r, message = FALSE}
 #1
+knitr::opts_chunk$set(tidy.opts=list(width.cutoff=20), tidy=TRUE, echo=TRUE)
+
 getwd()
 library(tidyverse)
 library(lubridate)
@@ -130,6 +132,8 @@ Air25_19.processed1
 
 #6. Save all four processed datasets in the Processed folder. Use the same file names as the raw files but replace "raw" with "processed".
 #6
+
+
 
 ```
 
