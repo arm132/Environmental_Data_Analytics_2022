@@ -138,11 +138,21 @@ Air25_18.processed1
 Air25_19.processed1<- (Air25_19.processed$AQS_PARAMETER_DESC="PM2.5")
 Air25_19.processed1
 
-#6. Save all four processed datasets in the Processed folder. Use the same file names as the raw files but replace "raw" with "processed".
+
 #6
 
+#Air3_18
+write.csv(Air3_18.processed, row.names = FALSE, file = "/Users/rorymccollum/Desktop/Rdata/Environmental_Data_Analytics_2022/Data/Processed/Air3_18.processed.csv")
+
+#Air3_19
+write.csv(Air3_19.processed, row.names = FALSE, file = "/Users/rorymccollum/Desktop/Rdata/Environmental_Data_Analytics_2022/Data/Processed/Air3_19.processed.csv")
 
 
+#Air25_18
+write.csv(Air25_18.processed1, row.names = FALSE, file = "/Users/rorymccollum/Desktop/Rdata/Environmental_Data_Analytics_2022/Data/Processed/Air25_18.processed.csv")
+
+#Air25_19
+write.csv(Air25_19.processed1, row.names = FALSE, file = "/Users/rorymccollum/Desktop/Rdata/Environmental_Data_Analytics_2022/Data/Processed/Air25_19.processed.csv")
 ```
 
 
