@@ -178,4 +178,4 @@ Air25_19.processed1<- (Air25_19.processed, AQS_PARAMETER_DESC="PM2.5")
 
 14. Why did we use the function `drop_na` rather than `na.omit`?
 
-> Answer: 
+> Answer: Do not need to answer
