@@ -95,19 +95,22 @@ dim(Air25_19)
 #Air3_18
 class(Air3_18$Date)
 Air3_18$Date<-as.Date(Air3_18$Date)
+class(Air3_18$Date)
 
 #Air3_19
 class(Air3_19$Date)
 Air3_19$Date<-as.Date(Air3_19$Date)
+class(Air3_19$Date)
 
 #Air25_18
 class(Air25_18$Date)
 Air25_18$Date<-as.Date(Air25_18$Date)
+class(Air25_18$Date)
 
 #Air25_19
 class(Air25_19$Date)
 Air25_19$Date<-as.Date(Air25_19$Date)
-
+class(Air25_19$Date)
 
 #4
 
@@ -132,11 +135,11 @@ view(Air25_19.processed)
 #Air25_18
 
 Air25_18.processed1<-(Air25_18.processed$AQS_PARAMETER_DESC="PM2.5")
-Air25_18.processed1
+view(Air25_18.processed1)
 
 #Air25_19
 Air25_19.processed1<- (Air25_19.processed$AQS_PARAMETER_DESC="PM2.5")
-Air25_19.processed1
+view(Air25_19.processed1)
 
 
 #6
@@ -171,6 +174,8 @@ write.csv(Air25_19.processed1, row.names = FALSE, file = "/Users/rorymccollum/De
 
 ```{r}
 #7
+
+rbind(Air25_18.processed, Air25_19.processed, Air3_18.processed, Air3_19.processed, deparse.level = 1, make.row.names=TRUE, stringsAsFactors=FALSE, factor.exclude=TRUE)
 
 #8
 
