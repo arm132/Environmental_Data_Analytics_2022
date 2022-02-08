@@ -23,9 +23,17 @@ The completed exercise is due on Monday, Feb 7 @ 7:00pm.
 
 2. Explore the dimensions, column names, and structure of the datasets. 
 
+```{r}
+library(knitr)
+knitr::opts_chunk$set(tidy.opts=list(width.cutoff=60), tidy=TRUE, echo=TRUE)
+
+#I don't think this is actually working, code still seems to run off the page no matter what number I use as the cutoff. I don't understand why, any advice would be appreciated!! 
+```
+
+
 ```{r, message = FALSE}
 #1
-knitr::opts_chunk$set(tidy.opts=list(width.cutoff=20), tidy=TRUE, echo=TRUE)
+
 
 getwd()
 library(tidyverse)
