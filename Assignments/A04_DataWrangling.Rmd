@@ -175,9 +175,17 @@ write.csv(Air25_19.processed1, row.names = FALSE, file = "/Users/rorymccollum/De
 ```{r}
 #7
 
-rbind(Air25_18.processed, Air25_19.processed, Air3_18.processed, Air3_19.processed, deparse.level = 1, make.row.names=TRUE, stringsAsFactors=FALSE, factor.exclude=TRUE)
+all_Air_data<- rbind(Air25_18.processed, Air25_19.processed, Air3_18.processed, Air3_19.processed, deparse.level = 1, make.row.names=TRUE, stringsAsFactors=FALSE, factor.exclude=TRUE)
+
+View(all_Air_data)
 
 #8
+
+processed_all_Air_data<-
+  all_Air_data %>%
+  filter(Site.Name=="Linville Falls", Site.Name== "Durham Armory",Site.Name== "Leggett", Site.Name=="Hattie Avenue", Site.Name== "Clemmons Middle",Site.Name== "Mendenhall School",Site.Name== "Frying Pan Mountain", Site.Name=="West Johnston Co.", Site.Name=="Garinger High School",Site.Name== "Castle Hayne",Site.Name== "Pitt Agri. Center",Site.Name== "Bryson City",Site.Name== "Millbrook School") %>%
+  split
+
 
 #9
 
