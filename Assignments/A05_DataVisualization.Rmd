@@ -37,13 +37,22 @@ the processed data file for the Niwot Ridge litter dataset (use the [`NEON_NIWO_
 getwd()
 library(tidyverse)
 library(cowplot)
+library(lubridate)
 
-#PeterPaul.chem.nutrients <- 
-  read.csv("./Data/Processed/NTL-LTER_Lake_Chemistry_Nutrients_PeterPaul_Processed.csv", stringsAsFactors = TRUE)
-read.csv(`NTL-LTER_Lake_Chemistry_Nutrients_PeterPaul_Processed.csv`)
 
-read.csv()
+PeterPaul.chem.nutrients <- read.csv("/Users/rorymccollum/Desktop/Rdata/Environmental_Data_Analytics_2022/Data/Processed/NTL-LTER_Lake_Chemistry_Nutrients_PeterPaul_Processed.csv", stringsAsFactors = TRUE)
+
+Niwot.litter <- read.csv("/Users/rorymccollum/Desktop/Rdata/Environmental_Data_Analytics_2022/Data/Processed/NEON_NIWO_Litter_mass_trap_Processed.csv", stringsAsFactors = TRUE)
+
 #2 
+
+class(PeterPaul.chem.nutrients$sampledate)
+PeterPaul.chem.nutrients$sampledate<-ymd(PeterPaul.chem.nutrients$sampledate)
+class(PeterPaul.chem.nutrients$sampledate)
+
+class(Niwot.litter$collectDate)
+Niwot.litter$collectDate<-ymd(Niwot.litter$collectDate)
+class(Niwot.litter$collectDate)
 
 ```
 ## Define your theme
