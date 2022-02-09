@@ -75,13 +75,15 @@ mytheme <- theme_classic(base_size = 14) +
         legend.position = "top") #alternative: legend.position + legend.justification
 
 # options: call the theme in each plot or set the theme at the start. 
+#axis text refers to numbers on axes (not axes labels)
+#legend justification means right, left, or center alignment
 
 O3plot5 <- ggplot(EPAair) +
   geom_point(aes(x = Date, y = Ozone)) +
   mytheme
 print(O3plot5)  
 
-theme_set(mytheme)
+theme_set(mytheme) #set theme for all subsequent plots 
 
 O3plot6 <- ggplot(EPAair) +
   geom_point(aes(x = Date, y = Ozone))
