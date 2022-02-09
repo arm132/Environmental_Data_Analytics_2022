@@ -39,6 +39,7 @@ getwd()
 library(tidyverse)
 library(lubridate)
 library(dplyr)
+library(dtplyr)
 
 Air3_18 <- read.csv('/Users/rorymccollum/Desktop/Rdata/Environmental_Data_Analytics_2022/Data/Raw/EPAair_O3_NC2018_raw.csv', stringsAsFactors = TRUE)
 View(Air3_18)
@@ -95,22 +96,22 @@ dim(Air25_19)
 
 #Air3_18
 class(Air3_18$Date)
-Air3_18$Date<-as.Date(Air3_18$Date)
+Air3_18$Date<-mdy(Air3_18$Date)
 class(Air3_18$Date)
 
 #Air3_19
 class(Air3_19$Date)
-Air3_19$Date<-as.Date(Air3_19$Date)
+Air3_19$Date<-mdy(Air3_19$Date)
 class(Air3_19$Date)
 
 #Air25_18
 class(Air25_18$Date)
-Air25_18$Date<-as.Date(Air25_18$Date)
+Air25_18$Date<-mdy(Air25_18$Date)
 class(Air25_18$Date)
 
 #Air25_19
 class(Air25_19$Date)
-Air25_19$Date<-as.Date(Air25_19$Date)
+Air25_19$Date<-mdy(Air25_19$Date)
 class(Air25_19$Date)
 
 #4
@@ -135,12 +136,12 @@ view(Air25_19.processed)
 
 #Air25_18
 
-Air25_18.processed1<-(Air25_18.processed$AQS_PARAMETER_DESC="PM2.5")
-view(Air25_18.processed1)
+Air25_18.processed$AQS_PARAMETER_DESC<-"PM2.5"
+view(Air25_18.processed)
 
 #Air25_19
-Air25_19.processed1<- (Air25_19.processed$AQS_PARAMETER_DESC="PM2.5")
-view(Air25_19.processed1)
+Air25_19.processed$AQS_PARAMETER_DESC<-"PM2.5"
+view(Air25_19.processed)
 
 
 #6
@@ -153,10 +154,10 @@ write.csv(Air3_19.processed, row.names = FALSE, file = "/Users/rorymccollum/Desk
 
 
 #Air25_18
-write.csv(Air25_18.processed1, row.names = FALSE, file = "/Users/rorymccollum/Desktop/Rdata/Environmental_Data_Analytics_2022/Data/Processed/Air25_18.processed.csv")
+write.csv(Air25_18.processed, row.names = FALSE, file = "/Users/rorymccollum/Desktop/Rdata/Environmental_Data_Analytics_2022/Data/Processed/Air25_18.processed.csv")
 
 #Air25_19
-write.csv(Air25_19.processed1, row.names = FALSE, file = "/Users/rorymccollum/Desktop/Rdata/Environmental_Data_Analytics_2022/Data/Processed/Air25_19.processed.csv")
+write.csv(Air25_19.processed, row.names = FALSE, file = "/Users/rorymccollum/Desktop/Rdata/Environmental_Data_Analytics_2022/Data/Processed/Air25_19.processed.csv")
 ```
 
 
@@ -180,13 +181,14 @@ all_Air_data<- rbind(Air25_18.processed, Air25_19.processed, Air3_18.processed, 
 
 View(all_Air_data)
 
+
 #8
 
 #* Some sites have multiple measurements per day. Use the split-apply-combine strategy to generate daily means: group by date, site, aqs parameter, and county. Take the mean of the AQI value, latitude, and longitude.
 
 processed_all_Air_data<-
   all_Air_data %>%
-  filter(Site.Name=="Linville Falls", Site.Name== "Durham Armory",Site.Name== "Leggett", Site.Name=="Hattie Avenue", Site.Name== "Clemmons Middle",Site.Name== "Mendenhall School",Site.Name== "Frying Pan Mountain", Site.Name=="West Johnston Co.", Site.Name=="Garinger High School",Site.Name== "Castle Hayne",Site.Name== "Pitt Agri. Center",Site.Name== "Bryson City",Site.Name== "Millbrook School") %>%
+  filter(Site.Name=="Linville Falls" | Site.Name== "Durham Armory"|Site.Name== "Leggett"| Site.Name=="Hattie Avenue"| Site.Name== "Clemmons Middle"|Site.Name== "Mendenhall School"|Site.Name== "Frying Pan Mountain"| Site.Name=="West Johnston Co."| Site.Name=="Garinger High School"|Site.Name== "Castle Hayne"|Site.Name== "Pitt Agri. Center"|Site.Name== "Bryson City"|Site.Name== "Millbrook School") %>%
   group_by(Date, Site.Name, AQS_PARAMETER_DESC, COUNTY) %>%
   summarise(meanAQI=mean(all_Air_data$DAILY_AQI_VALUE), 
             meanlat=mean(all_Air_data$SITE_LATITUDE), 
@@ -196,13 +198,17 @@ processed_all_Air_data<-
 
 view(processed_all_Air_data)
 
-#not sure why this is showing as no data, my code seems to match up with others on slack, maybe because I didn't use lubridate above? 
 
 #9
 
+
 #10
 
+dim(processed_all_Air_data)
+
 #11
+
+write.csv(processed_all_Air_data, row.names=FALSE, file="/Users/rorymccollum/Desktop/Rdata/Environmental_Data_Analytics_2022/Data/Processed/EPAair_O3_PM25_NC2122_Processed.csv")
 
 ```
 
@@ -217,10 +223,18 @@ view(processed_all_Air_data)
 
 ```{r}
 #12(a,b)
+#copied from above, don't need to run again 
+Air.summary<-
+  STEP NINE %>%
+ 
+
+  #use cominbation of filter fxn and is.na figure out if and/or statement 
+
 
 
 #13
 
+dim(Air.summary)
 ```
 
 14. Why did we use the function `drop_na` rather than `na.omit`?
