@@ -109,6 +109,11 @@ O3plot7 <- ggplot(EPAair, aes(x = Date, y = Ozone)) +
   theme(axis.text.x = element_text(angle = 45,  hjust = 1))
 print(O3plot7)  
 
+#lty specifies type of line 
+#hline means horizontal line 
+#alpha means transparency of lines 
+#hjust is the horixontal justification, 1 means left aligning 
+#when setting limits must specifiy a range 
 ```
 
 ### Color palettes
