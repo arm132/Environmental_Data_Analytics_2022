@@ -38,6 +38,7 @@ knitr::opts_chunk$set(tidy.opts=list(width.cutoff=60), tidy=TRUE, echo=TRUE)
 getwd()
 library(tidyverse)
 library(lubridate)
+library(dplyr)
 
 Air3_18 <- read.csv('/Users/rorymccollum/Desktop/Rdata/Environmental_Data_Analytics_2022/Data/Raw/EPAair_O3_NC2018_raw.csv', stringsAsFactors = TRUE)
 View(Air3_18)
@@ -195,9 +196,7 @@ processed_all_Air_data<-
 
 view(processed_all_Air_data)
 
-# Split components of cells into multiple columns
-# Opposite of 'separate' is 'unite'
-#NTL.nutrient.data.PeterPaul.dates <- separate(NTL.nutrient.data.PeterPaul.subset, sampledate, c("Y", "m", "d"))
+#not sure why this is showing as no data, my code seems to match up with others on slack, maybe because I didn't use lubridate above? 
 
 #9
 
