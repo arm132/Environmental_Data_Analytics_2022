@@ -94,6 +94,7 @@ print(phorus_by_phate)
 ```{r, fig.height = 3, fig.width = 4, warning = FALSE}
 #5
 
+
 ```
 
 Question: What do you observe about the variables of interest over seasons and between lakes? 
