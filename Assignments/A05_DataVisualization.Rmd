@@ -61,6 +61,12 @@ class(Niwot.litter$collectDate)
 ```{r}
 #3
 
+rorystheme<-theme_classic(base_size = 14) +
+  theme(axis.text = element_text(color = "black"), 
+        legend.position = "right")
+
+theme_set(rorystheme)
+
 ```
 
 ## Create graphs
@@ -68,15 +74,16 @@ For numbers 4-7, create ggplot graphs and adjust aesthetics to follow best pract
 
 4. [NTL-LTER] Plot total phosphorus (`tp_ug`) by phosphate (`po4`), with separate aesthetics for Peter and Paul lakes. Add a line of best fit and color it black. Adjust your axes to hide extreme values (hint: change the limits using `xlim()` and `ylim()`).
 
-```{r}
+```{r, fig.height = 3, fig.width = 4, warning = FALSE}
 #4
+
 
 ```
 
 
 5. [NTL-LTER] Make three separate boxplots of (a) temperature, (b) TP, and (c) TN, with month as the x axis and lake as a color aesthetic. Then, create a cowplot that combines the three graphs. Make sure that only one legend is present and that graph axes are aligned.
 
-```{r}
+```{r, fig.height = 3, fig.width = 4, warning = FALSE}
 #5
 
 ```
@@ -89,7 +96,7 @@ Question: What do you observe about the variables of interest over seasons and b
 
 7. [Niwot Ridge] Now, plot the same plot but with NLCD classes separated into three facets rather than separated by color. 
 
-```{r}
+```{r, fig.height = 3, fig.width = 4, warning = FALSE}
 #6
 
 #7
