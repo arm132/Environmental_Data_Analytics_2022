@@ -178,6 +178,7 @@ Nutrientplot4 <-
   geom_dotplot(aes(color = nutrient, fill = nutrient), binaxis = "y", binwidth = 1, 
                stackdir = "center", position = "dodge", dotsize = 2) #
 print(Nutrientplot4)
+#position=dodge makes the points go out to the side instead of just sitting on top of one another, stack=center is making the dots go up from the center line 
 
 # Violin plot
 Nutrientplot5 <-
