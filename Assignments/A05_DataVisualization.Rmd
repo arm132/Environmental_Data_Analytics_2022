@@ -77,6 +77,14 @@ For numbers 4-7, create ggplot graphs and adjust aesthetics to follow best pract
 ```{r, fig.height = 3, fig.width = 4, warning = FALSE}
 #4
 
+phorus_by_phate<-ggplot(PeterPaul.chem.nutrients, aes(x=tp_ug, y=po4, color=lakename))+
+   xlim(0,155)+ ylim(0, 50)+
+  xlab("Total Phosphorus") + ylab("Phosphate")+
+  labs(color="Lake Name")+
+  geom_point()+
+  geom_smooth(method = lm, color="black")
+  
+print(phorus_by_phate)
 
 ```
 
