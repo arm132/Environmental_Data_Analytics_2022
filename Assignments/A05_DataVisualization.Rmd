@@ -63,6 +63,7 @@ class(Niwot.litter$collectDate)
 
 rorystheme<-theme_classic(base_size = 14) +
   theme(axis.text = element_text(color = "black"), 
+        panel.background = element_rect(fill = "lightblue"),
         legend.position = "right")
 
 theme_set(rorystheme)
