@@ -40,9 +40,13 @@ library(cowplot)
 library(lubridate)
 
 
-PeterPaul.chem.nutrients <- read.csv("/Users/rorymccollum/Desktop/Rdata/Environmental_Data_Analytics_2022/Data/Processed/NTL-LTER_Lake_Chemistry_Nutrients_PeterPaul_Processed.csv", stringsAsFactors = TRUE)
+PeterPaul.chem.nutrients <- read.csv(
+  "/Users/rorymccollum/Desktop/Rdata/Environmental_Data_Analytics_2022/Data/Processed/NTL-LTER_Lake_Chemistry_Nutrients_PeterPaul_Processed.csv", 
+  stringsAsFactors = TRUE)
 
-Niwot.litter <- read.csv("/Users/rorymccollum/Desktop/Rdata/Environmental_Data_Analytics_2022/Data/Processed/NEON_NIWO_Litter_mass_trap_Processed.csv", stringsAsFactors = TRUE)
+Niwot.litter <- read.csv(
+  "/Users/rorymccollum/Desktop/Rdata/Environmental_Data_Analytics_2022/Data/Processed/NEON_NIWO_Litter_mass_trap_Processed.csv", 
+  stringsAsFactors = TRUE)
 
 #2 
 
@@ -63,7 +67,7 @@ class(Niwot.litter$collectDate)
 
 rorystheme<-theme_classic(base_size = 14) +
   theme(axis.text = element_text(color = "black"), 
-        panel.background = element_rect(fill = "lightblue"),
+        panel.background = element_rect(fill = "blanchedalmond"),
         legend.position = "right")
 
 theme_set(rorystheme)
@@ -82,7 +86,7 @@ phorus_by_phate<-ggplot(PeterPaul.chem.nutrients, aes(x=tp_ug, y=po4, color=lake
    xlim(0,155)+ ylim(0, 50)+
   xlab("Total Phosphorus") + ylab("Phosphate")+
   labs(color="Lake Name")+
-  geom_point()+
+  geom_point(alpha=0.6)+
   geom_smooth(method = lm, color="black")
   
 print(phorus_by_phate)
@@ -95,6 +99,32 @@ print(phorus_by_phate)
 ```{r, fig.height = 3, fig.width = 4, warning = FALSE}
 #5
 
+#Temperature
+temp<-ggplot(PeterPaul.chem.nutrients)+
+  geom_boxplot(aes(x=month, y=temperature_C, color=lakename))+
+  ylab("Temperature (C)") + xlab("Month")+
+  labs(color="Lake Name")
+  
+print(temp)
+
+
+#TP
+TP<-ggplot(PeterPaul.chem.nutrients)+
+  geom_boxplot(aes(x=month, y=tp_ug, color=lakename))+
+  ylab("Total Phosphorus") + xlab("Month")+
+  labs(color="Lake Name")
+  
+print(TP)
+
+#TN
+TN<-ggplot(PeterPaul.chem.nutrients)+
+  geom_boxplot(aes(x=month, y=tn_ug, color=lakename))+
+  ylab("Total Nitrogen") + xlab("Month")+
+  labs(color="Lake Name")
+  
+print(TN)
+
+#all together
 
 ```
 
