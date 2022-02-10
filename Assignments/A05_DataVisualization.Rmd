@@ -123,10 +123,17 @@ TN<-ggplot(PeterPaul.chem.nutrients)+
   labs(color="Lake Name")
   
 print(TN)
+```
 
+
+
+```{r, fig.height = 6, fig.width = 4, warning = FALSE}
 #all together
 
+plot_grid(temp, TP, TN, nrow = 3, align = 'h', rel_heights = c(1, 1, 1))+
+  labs(color="Lake Name")
 ```
+
 
 Question: What do you observe about the variables of interest over seasons and between lakes? 
 
@@ -138,6 +145,14 @@ Question: What do you observe about the variables of interest over seasons and b
 
 ```{r, fig.height = 3, fig.width = 4, warning = FALSE}
 #6
+
+#drymass_needles<-ggplot(filter(Niwot.litter, functionalGroup==Needles))+
+  #geom_point(aes(x=collectDate, y=dryMass, color=nlcdClass))+
+  #xlab("Date")+ ylab("Dry Mass")+
+  #labs(color="NLCD Class")
+
+#print(drymass_needles)
+
 
 #7
 
