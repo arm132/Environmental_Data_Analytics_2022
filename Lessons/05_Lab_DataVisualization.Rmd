@@ -18,12 +18,17 @@ editor_options:
 
 The expression function can be used when you want to add mathematical symbols and subscripts mixed with regular letter to labels. 
 
+
 ```{r}
 Plot_text <-
 ggplot(data=data.frame(x=0,y=0))+
   geom_point(aes(x=x,y=y)) +
   geom_text(x=0,y=0.025,label=expression(paste("Mean is ", mu,",", R^{2},'=0.6')))
 print(Plot_text)
+
+#expression command allows us to include formatted characters intro script, greek letters are included, also degree (get the little sign)
+#paste allows you to take multiple strings separated by commas and put them together
+#^{} makes super script, [] is subscript
 
 ggsave("./Output/Plot_text.jpg",Plot_text, height = 4, width = 6, units = "in", dpi = 300)
 
