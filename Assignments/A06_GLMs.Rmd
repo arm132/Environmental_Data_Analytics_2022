@@ -31,6 +31,10 @@ getwd()
 library(tidyverse)
 library(agricolae)
 library(lubridate)
+library(ggridges)
+library(viridis)
+library(RColorBrewer)
+library(colormap)
 
 lakechemraw<-read.csv("/Users/rorymccollum/Desktop/Rdata/Environmental_Data_Analytics_2022/Data/Raw/NTL-LTER_Lake_ChemistryPhysics_Raw.csv", stringsAsFactors = TRUE)
 
@@ -54,8 +58,8 @@ Our first research question is: Does mean lake temperature recorded during July 
 
 3. State the null and alternative hypotheses for this question:
 > Answer:
-H0: 
-Ha: 
+H0: Lake temperature recorded during July does NOT change with depth across all lakes
+Ha: Lake temperature recorded during July DOES change with depth across all lakes
 
 
 4.  Wrangle your NTL-LTER dataset with a pipe function so that the records meet the following criteria: 
@@ -68,9 +72,21 @@ Ha:
 ```{r scatterplot}
 #4
 
+ex4.0<-lakechemraw%>%
+  filter(month(sampledate)==7) %>%
+  mutate(month= month(sampledate))%>%
+  select(lakename:daynum, depth:temperature_C)%>%
+  filter(!is.na(temperature_C))
+
+view(ex4.0)
 
 #5
 
+temp_by_depth<-ggplot(ex4.0)+
+  geom_point(aes(x=depth, y=temperature_C))+
+  xlab("Depth")+ylab("Temperature (C)")
+
+print(temp_by_depth)
 
 ```
 
