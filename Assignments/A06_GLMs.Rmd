@@ -30,6 +30,13 @@ The completed exercise is due on Monday, February 28 at 7:00 pm.
 getwd()
 library(tidyverse)
 library(agricolae)
+library(lubridate)
+
+lakechemraw<-read.csv("/Users/rorymccollum/Desktop/Rdata/Environmental_Data_Analytics_2022/Data/Raw/NTL-LTER_Lake_ChemistryPhysics_Raw.csv", stringsAsFactors = TRUE)
+
+class(lakechemraw$sampledate)
+lakechemraw$sampledate<-mdy(lakechemraw$sampledate)
+class(lakechemraw$sampledate)
 
 #2
 
