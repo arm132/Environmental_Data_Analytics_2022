@@ -27,7 +27,9 @@ The completed exercise is due on Monday, February 28 at 7:00 pm.
 
 ```{r setup}
 #1
-
+getwd()
+library(tidyverse)
+library(agricolae)
 
 #2
 
