@@ -76,11 +76,18 @@ summary(EPAair$Ozone)
 EPAair.subsample <- sample_n(EPAair, 5000)
 
 # Evaluate assumption of normal distribution
+#shapiro is just telling you if data is normal, bell shaped curve 
+#histogram has a tail on the right (not quite normal) 
+#Q-Q plot points do not follow the diagonal line super well (banana shape)
 shapiro.test((EPAair.subsample$Ozone))
 ggplot(EPAair, aes(x = Ozone)) +
   geom_histogram() 
 qqnorm(EPAair$Ozone); qqline(EPAair$Ozone)
 
+#doing a t-test
+#hnull, sample is = to 50, ha, sample is less than 50 
+#p-value is very low, reject null hypothesis
+#sample suggests that this location has a mean below 50 ppm
 O3.onesample <- t.test(EPAair$Ozone, mu = 50, alternative = "less")
 O3.onesample
 
@@ -94,16 +101,18 @@ print(Ozone.plot)
 
 Write a sentence or two about the results of this test. Include both the results of the test and an interpretation that puts the findings in context of the research question.
 
-> 
+> We found that ozone levels are below the 50 ppm thershold using a one-sided t-test (p<2.2e-16). Our sample failed the Shapiro-wilk test of normailty. 
 
 ### Two-sample t-test
 
 The two-sample *t* test is used to test the hypothesis that the mean of two samples is equivalent. Unlike the one-sample tests, a two-sample test requires a second assumption that the variance of the two groups is equivalent. Are Ozone levels different between 2018 and 2019?
 
+h0: samples have same mean 
+ha: samples have different means 
 ```{r}
 shapiro.test(EPAair$Ozone[EPAair$Year == 2018])
 shapiro.test(EPAair$Ozone[EPAair$Year == 2019])
-
+#low p-values mean these are NOT NORMAL distributions
 #p-value less than 0.05 then reject null for 2018 and 2019 i.e. data do not follow normal distribution
 
 #Compare variance using F-test (only)
@@ -113,11 +122,15 @@ var.test(EPAair$Ozone ~ EPAair$Year)
 
 ggplot(EPAair, aes(x = Ozone, color = as.factor(Year))) +
   geom_freqpoly()
+#we keep seeing this weird dip in the middle of the hump, something strange is going on 
 
 # Format as a t-test
+#only have two categories here, if we had more than two we would do an anova
 O3.twosample <- t.test(EPAair$Ozone ~ EPAair$Year)
 O3.twosample
 O3.twosample$p.value
+
+#p-value is significant at .05 level
 
 # Format as a GLM
 O3.twosample2 <- lm(EPAair$Ozone ~ EPAair$Year)
@@ -125,7 +138,7 @@ summary(O3.twosample2)
 
 plot(O3.twosample2)
 
-
+#p-value is significant at .05 level
 ```
 
 
