@@ -34,7 +34,7 @@ theme_set(mytheme)
 ### One-way ANOVA
 A one-way ANOVA is used when you have one categorical explanatory variable with more than two categories. In R, we can run the model with the function `lm` or `aov`, the latter of which will allow us to run post-hoc tests to determine pairwise differences.
 
-Does total litter biomass differ among sites at the Niwot Ridge LTER?
+Research question of the day: Does total litter biomass differ among sites at the Niwot Ridge LTER?
 ```{r}
 # Wrangle the data
 Litter.Totals <- Litter %>%
@@ -73,7 +73,7 @@ bartlett.test(Litter.Totals$dryMass ~ Litter.Totals$plotID)
 
 #results: reject null i.e. variances are not equal
 
-# Format ANOVA as aov
+# Format ANOVA as aov (data, continuous/dependent ~ categorical/independent)
 Litter.Totals.anova <- aov(data = Litter.Totals, dryMass ~ plotID)
 summary(Litter.Totals.anova)
 
