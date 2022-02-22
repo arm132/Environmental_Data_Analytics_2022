@@ -149,12 +149,19 @@ summary(Tempmodel)
 ```{r anova.model}
 #12
 
+#anova model
+julytempanova<-aov(data = ex4.0, temperature_C ~ lakename)
+summary(julytempanova)
+
+#linear model
+julytempanova2<-lm(formula = temperature_C ~ lakename, data=ex4.0)
+summary(julytempanova2)
 
 ```
 
 13. Is there a significant difference in mean temperature among the lakes? Report your findings. 
 
-> Answer: 
+> Answer: Because we got a significant p-value (p < 2.2e-16), we reject the null hypothesis. In this case the null hypothesis is that the mean temperature in july are not  different. There is a significant difference in mean temperature among the lakes, but we do not yet know between which lakes. 
 
 
 
@@ -171,12 +178,15 @@ summary(Tempmodel)
 ```{r tukey.test}
 #15
 
+TukeyHSD(julytempanova)
 
+julytemp.groups <- HSD.test(julytempanova, "lakename", group = TRUE)
+julytemp.groups
 ```
 
 16.From the findings above, which lakes have the same mean temperature, statistically speaking, as Peter Lake? Does any lake have a mean temperature that is statistically distinct from all the other lakes?
 
->Answer:
+>Answer: Statistically speaking, Ward Lake and Paul Lake have the same mean temperature as Peter Lake. None of the lakes have a mean temperature that is statistically distinct from all other lakes. 
 
  
 
