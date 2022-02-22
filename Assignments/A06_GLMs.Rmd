@@ -95,21 +95,22 @@ print(temp_by_depth)
 
 6. Interpret the figure. What does it suggest with regards to the response of temperature to depth? Do the distribution of points suggest about anything about the linearity of this trend?
 
-> Answer: It suggests that temperature generally decreases as you go deeper in a lake. Which makes sense in regards to sunlight penetration (among other reasons). 
+> Answer: It suggests that temperature generally decreases as you go deeper in a lake. Which makes sense in regards to sunlight penetration (among other reasons). This trend seems to be x^3 ***check with mom*** 
 
 
 7. Perform a linear regression to test the relationship and display the results
 
 ```{r linear.regression}
 #7
-
+tempdepth.regression<-lm(data=ex4.0, temperature_C ~ depth)
+summary(tempdepth.regression)
 
 ```
 
 
 8. Interpret your model results in words. Include how much of the variability in temperature is explained by changes in depth, the degrees of freedom on which this finding is based, and the statistical significance of the result. Also mention how much temperature is predicted to change for every 1m change in depth. 
 
-> Answer:
+> Answer: This model shows a negative relationship between temperature and depth, for every 1m increase in depth, temperature decreases by 1.9. About 73% of the variability is explained by depth (R-squared:  0.7387). This finding is based on 9726 degrees of freedom. This model is statistically significant, with a p-value of < 2.2e-16. 
 
 
 ---
@@ -124,17 +125,19 @@ Let's tackle a similar question from a different approach. Here, we want to expl
 
 ```{r temperature.model}
 #9
-
-
+  
+TPAIC.hw<- lm(data= ex4.0, temperature_C ~ year4 + daynum + depth)
+step(TPAIC.hw)
 
 #10
-
+Tempmodel <- lm(data = ex4.0, temperature_C ~ year4 + daynum + depth)
+summary(Tempmodel)
 
 ```
 
 11. What is the final set of explanatory variables that the AIC method suggests we use to predict temperature in our multiple regression? How much of the observed variance does this model explain? Is this an improvement over the model using only depth as the explanatory variable?
 
-> Answer: 
+> Answer: AIC suggests that we use all three variables, year4, daynum, and depth to explain temperature. This model explains about 74% of the variance (R-squared:  0.7412). This is a very small improvement over the previous model (using only depth to explain) which explained about 73%. 
 
 
 
