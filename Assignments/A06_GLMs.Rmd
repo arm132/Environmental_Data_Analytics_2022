@@ -72,17 +72,17 @@ Ha: Lake temperature recorded during July DOES change with depth across all lake
 ```{r scatterplot}
 #4
 
-ex4.0<-lakechemraw%>%
+onlyjuly<-lakechemraw%>%
   filter(month(sampledate)==7) %>%
   mutate(month= month(sampledate))%>%
   select(lakename:daynum, depth:temperature_C)%>%
   filter(!is.na(temperature_C))
 
-view(ex4.0)
+view(onlyjuly)
 
 #5
 
-temp_by_depth<-ggplot(ex4.0, aes(x=depth, y=temperature_C))+
+temp_by_depth<-ggplot(onlyjuly, aes(x=depth, y=temperature_C))+
   geom_point(alpha=0.5)+
   xlab("Depth")+ylab("Temperature (C)")+
   ylim(0, 35)+
@@ -95,14 +95,14 @@ print(temp_by_depth)
 
 6. Interpret the figure. What does it suggest with regards to the response of temperature to depth? Do the distribution of points suggest about anything about the linearity of this trend?
 
-> Answer: It suggests that temperature generally decreases as you go deeper in a lake. Which makes sense in regards to sunlight penetration (among other reasons). This trend seems to be x^3 ***check with mom*** 
+> Answer: It suggests that temperature decreases with depth. The trend appears non-linear, more closly aligned with a sigmmoid curve. 
 
 
 7. Perform a linear regression to test the relationship and display the results
 
 ```{r linear.regression}
 #7
-tempdepth.regression<-lm(data=ex4.0, temperature_C ~ depth)
+tempdepth.regression<-lm(data=onlyjuly, temperature_C ~ depth)
 summary(tempdepth.regression)
 
 ```
@@ -126,11 +126,11 @@ Let's tackle a similar question from a different approach. Here, we want to expl
 ```{r temperature.model}
 #9
   
-TPAIC.hw<- lm(data= ex4.0, temperature_C ~ year4 + daynum + depth)
+TPAIC.hw<- lm(data= onlyjuly, temperature_C ~ year4 + daynum + depth)
 step(TPAIC.hw)
 
 #10
-Tempmodel <- lm(data = ex4.0, temperature_C ~ year4 + daynum + depth)
+Tempmodel <- lm(data = onlyjuly, temperature_C ~ year4 + daynum + depth)
 summary(Tempmodel)
 
 ```
@@ -150,18 +150,18 @@ summary(Tempmodel)
 #12
 
 #anova model
-julytempanova<-aov(data = ex4.0, temperature_C ~ lakename)
+julytempanova<-aov(data = onlyjuly, temperature_C ~ lakename)
 summary(julytempanova)
 
 #linear model
-julytempanova2<-lm(formula = temperature_C ~ lakename, data=ex4.0)
+julytempanova2<-lm(formula = temperature_C ~ lakename, data=onlyjuly)
 summary(julytempanova2)
 
 ```
 
 13. Is there a significant difference in mean temperature among the lakes? Report your findings. 
 
-> Answer: Because we got a significant p-value (p < 2.2e-16), we reject the null hypothesis. In this case the null hypothesis is that the mean temperature in july are not  different. There is a significant difference in mean temperature among the lakes, but we do not yet know between which lakes. 
+> Answer: Because we got a significant p-value (p < 2.2e-16), we reject the null hypothesis. In this case the null hypothesis is that the mean temperature in july are not different. There is a significant difference in mean temperature among the lakes, but we do not yet know between which lakes. 
 
 
 
@@ -170,6 +170,13 @@ summary(julytempanova2)
 ```{r scatterplot.2}
 #14.
 
+temp_by_depth_lake<-ggplot(onlyjuly, aes(x=depth, y=temperature_C, color=lakename))+
+  geom_point(alpha=0.5)+
+  xlab("Depth")+ylab("Temperature (C)")+
+  ylim(0, 35)+
+  geom_smooth(method="lm", se=TRUE, fullrange=FALSE, level=0.95)
+
+print(temp_by_depth_lake)
 
 ```
 
@@ -192,6 +199,6 @@ julytemp.groups
 
 17. If we were just looking at Peter Lake and Paul Lake. What's another test we might explore to see whether they have distinct mean temperatures? 
 
->Answer: 
+>Answer: We could run a t-test. 
 
 
