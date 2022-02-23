@@ -126,8 +126,8 @@ Let's tackle a similar question from a different approach. Here, we want to expl
 ```{r temperature.model}
 #9
   
-TPAIC.hw<- lm(data= onlyjuly, temperature_C ~ year4 + daynum + depth)
-step(TPAIC.hw)
+TempAIC<- lm(data= onlyjuly, temperature_C ~ year4 + daynum + depth)
+step(TempAIC)
 
 #10
 Tempmodel <- lm(data = onlyjuly, temperature_C ~ year4 + daynum + depth)
@@ -173,6 +173,7 @@ summary(julytempanova2)
 temp_by_depth_lake<-ggplot(onlyjuly, aes(x=depth, y=temperature_C, color=lakename))+
   geom_point(alpha=0.5)+
   xlab("Depth")+ylab("Temperature (C)")+
+  labs(color="Lake Name")+
   ylim(0, 35)+
   geom_smooth(method="lm", se=TRUE, fullrange=FALSE, level=0.95)
 
@@ -193,7 +194,7 @@ julytemp.groups
 
 16.From the findings above, which lakes have the same mean temperature, statistically speaking, as Peter Lake? Does any lake have a mean temperature that is statistically distinct from all the other lakes?
 
->Answer: Statistically speaking, Ward Lake and Paul Lake have the same mean temperature as Peter Lake. None of the lakes have a mean temperature that is statistically distinct from all other lakes. 
+>Answer: Statistically speaking, both Ward Lake and Paul Lake have the same mean temperature as Peter Lake. None of the lakes have a mean temperature that is statistically distinct from all other lakes. 
 
  
 
