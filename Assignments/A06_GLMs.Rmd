@@ -84,9 +84,9 @@ view(onlyjuly)
 
 temp_by_depth<-ggplot(onlyjuly, aes(x=depth, y=temperature_C))+
   geom_point(alpha=0.5)+
-  xlab("Depth")+ylab("Temperature (C)")+
+  xlab("Depth (m)")+ylab("Temperature (C)")+
   ylim(0, 35)+
-  geom_smooth(method="auto", se=TRUE, fullrange=FALSE, level=0.95)
+  geom_smooth(method="lm", se=TRUE, fullrange=FALSE, level=0.95)
 
 print(temp_by_depth)
 
@@ -172,7 +172,7 @@ summary(julytempanova2)
 
 temp_by_depth_lake<-ggplot(onlyjuly, aes(x=depth, y=temperature_C, color=lakename))+
   geom_point(alpha=0.5)+
-  xlab("Depth")+ylab("Temperature (C)")+
+  xlab("Depth (m)")+ylab("Temperature (C)")+
   labs(color="Lake Name")+
   ylim(0, 35)+
   geom_smooth(method="lm", se=TRUE, fullrange=FALSE, level=0.95)
@@ -200,6 +200,6 @@ julytemp.groups
 
 17. If we were just looking at Peter Lake and Paul Lake. What's another test we might explore to see whether they have distinct mean temperatures? 
 
->Answer: We could run a t-test. 
+>Answer: We could run a two-sample t-test, as that investigates whether two means are equal.
 
 
