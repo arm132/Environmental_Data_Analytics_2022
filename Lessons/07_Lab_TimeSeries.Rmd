@@ -72,6 +72,9 @@ Temp_BR <- read.csv("./Data/Raw/tas_1901_2016_BRA.csv", stringsAsFactors = TRUE)
 #c Now you should have a column with Month. Use the paste0() function to paste month and year together and create a date object.
 #d Select only the columns of interest: Date and rainfall
 
+#separate is changing one column into 3, the limit is a space (column,c("new column", "new column"), "limit")
+#paste combines columns together, make sure to use paste0 when there is no separater?
+
 Rainfall_BR_processed <-
   Rainfall_BR %>% 
   rename( Rainfall = Rainfall....MM.) %>% 
