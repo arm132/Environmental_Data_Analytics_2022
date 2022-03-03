@@ -34,6 +34,7 @@ editor_options:
 #ACF vs PACF
 #acf has info about correlation, but we are only talking about one (and time lol) so this is trying to find how yt is related to yt-1 ...etc. help identify order of model. how relevant are previous observations to current observation (helps forcast)
 #pacf: when you think about yt and yt-2 there is influence of yt-1, so this model tries to erase that influence, the interaction in between observations. this is important bc there might be high correlation between two observations due to influence of other observations, helps with order of model as well. 
+#frequency is when do you start repeating, yearly, monthly, daily. shorter time interval
 
 library(tidyverse)
 library(lubridate)
