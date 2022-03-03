@@ -118,7 +118,7 @@ Note: time series objects must be equispaced. In our case, we have daily data wi
 ```{r}
 #can also get column by doing dataset[[columnnumber]]
 EnoDischarge.late_ts <- ts(EnoDischarge.late$discharge.mean, start = c(1985,1), frequency = 365)
-#if you want to see the time series, you can type in the console head(timeseriesname, num er of observations you want to see)
+#if you want to see the time series, you can type in the console head(timeseriesname, number of observations you want to see)
 ```
 
 The `stl` function decomposes the time series object into its component parts. We must specify that the window for seasonal extraction is either "periodic" or a specific number of at least 7. The decomposition proceeds through a loess (locally estimated scatterplot smoothing) function.
