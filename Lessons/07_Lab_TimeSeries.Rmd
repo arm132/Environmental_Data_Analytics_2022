@@ -93,7 +93,9 @@ Temp_BR_processed <-
 
 #Exercise 4: Join the temperature and rainfall into one tidy data frame with 3 columns: Date, Rainfall and Temperature.
 BRA_complete <- inner_join(Rainfall_BR_processed,Temp_BR_processed)
-  
+
+#inner_join: if there is a month of rainfall where we don't have temp, r just assigns na but won't delete. use this in the assignment!! you can also use left_join 
+#we don't like to use column bind here bc we aren't sure if they are matching up times
            
 ```
 
@@ -104,7 +106,7 @@ BRA_complete <- inner_join(Rainfall_BR_processed,Temp_BR_processed)
 
 #Exercise 5: Check if there is any missing data for both temperature and rainfall series.
 
-
+summary(BRA_complete)
 
 
 #Exercise 6: Plot both series over time on separate plots. Add a trend line using geom_smooth(). Can you say something about the trend just by visualizing the data?
