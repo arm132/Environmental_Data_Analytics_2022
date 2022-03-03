@@ -106,14 +106,26 @@ BRA_complete <- inner_join(Rainfall_BR_processed,Temp_BR_processed)
 
 #Exercise 5: Check if there is any missing data for both temperature and rainfall series.
 
-summary(BRA_complete)
+summary(BRA_complete$Rainfall)
+summary(BRA_complete$Temperature_C)
 
 
 #Exercise 6: Plot both series over time on separate plots. Add a trend line using geom_smooth(). Can you say something about the trend just by visualizing the data?
 
 
+temp_plot<-ggplot(BRA_complete, aes(x=Date, y=Temperature_C)) +
+  geom_line() +
+  geom_smooth(method="lm")
+  labs(x="Date", y="Temperature (C)")
+print(temp_plot)
+  
+#the temperature seems to have an upward trend over time
 
-
+rainfall_plot<- ggplot(BRA_complete, aes(x=Date, y=Rainfall)) +
+  geom_line()+
+  geom_smooth(method="lm")
+print(rainfall_plot)
+#rainfall might have an upward trend? but it's hard to see. there is definitely some seasonal variation 
 
 
 ```
