@@ -16,6 +16,24 @@ editor_options:
 ## Set up
 
 ```{r, message = FALSE}
+#notes
+#time series are special bc they are something over time? we can generate projections perhaps to make a more informed decisions
+#3 main components of a time series: seasonality, trend, remainder (usually the hardest part to forecast, not explain by trend or seasonality) 
+#this component is the cyclical: how is it different from seasonal?- seasonal is over one calendar year, goes along with season, day or hour, cyclical is also repeated but longer durations, ,perhaps only one or two cycles a year, could be even once every 10 years. we need more data to see these 
+#stl fxn receives time series object and identifies the three main components, if you sum 3 components you get original data (that's why its a decomposition)
+#challenges: dealing with missing observations. we can't just drop na's because it would mess up the spacing (since they are over time and locked to that time, you can't just skip july for ex) instead of getting rid of them we fill them out (model?) using linear interpolation you just connect the dots. not change the series at all
+#if you have really big gaps it is better to just drop the data before the gap
+#once you fill in gaps you visualize using a line plot 
+#the other thing you look at is overall increase or decrease? is there one? how can you be sure? mann kendall, can't use this for seasonal time series, because it will be confused sine it is going up and done. you have to use seasonal mann kendall! it looks  at each season and then you combine the trends from each season to get an overall test 
+#spearman correlation, also cannot handle seasonality and has no variation to include seasonality. to get rid of seasonality, you can just subtract from original data (you have to do this in the assignment). or you can group seasonal data, like months over year... i'm a little confused on this one
+#two types of trends: stochastic and deterministic 
+#deterministic: easier to observe, constant over time, can model with a regression line
+#stochastic: harder to identify, changes over time, could be change in pace, could trend up and down 
+#test to identify stochastic trend: ADF- Augmented Dickey Fuller 
+#important to identify trends that happened in the past to predict future 
+#ACF vs PACF
+#acf has info about correlation, but we are only talking about one (and time lol) so this is trying to find how yt is related to yt-1 ...etc. help identify order of model. how relevant are previous observations to current observation (helps forcast)
+#pacf: when you think about yt and yt-2 there is influence of yt-1, so this model tries to erase that influence, the interaction in between observations. this is important bc there might be high correlation between two observations due to influence of other observations, helps with order of model as well. 
 
 library(tidyverse)
 library(lubridate)
