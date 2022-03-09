@@ -75,7 +75,9 @@ EPAair_NC2018_raw <- read.csv("Data/Raw/Ozone_TimeSeries/EPAair_O3_GaringerNC201
 EPAair_NC2019_raw <- read.csv("Data/Raw/Ozone_TimeSeries/EPAair_O3_GaringerNC2019_raw.csv", stringsAsFactors = TRUE)
 
 #combine 
+GaringerOzone<-rbind(EPAair_NC2010_raw, EPAair_NC2011_raw, EPAair_NC2012_raw, EPAair_NC2013_raw, EPAair_NC2014_raw, EPAair_NC2015_raw, EPAair_NC2016_raw, EPAair_NC2017_raw, EPAair_NC2018_raw, EPAair_NC2019_raw)
 
+view(GaringerOzone)
 ```
 
 ## Wrangle
