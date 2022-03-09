@@ -93,6 +93,10 @@ view(GaringerOzone)
 ```{r}
 # 3
 
+class(GaringerOzone$Date)
+GaringerOzone$Date <- mdy(GaringerOzone$Date)
+class(GaringerOzone$Date)
+
 # 4
 
 # 5
