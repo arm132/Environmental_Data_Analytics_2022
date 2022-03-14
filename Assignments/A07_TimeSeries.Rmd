@@ -105,9 +105,14 @@ view(GaringerOzone_wrangle)
 # 5
 
 Days<-as.data.frame(seq(as.Date("2010/01/01"), as.Date("2019/12/31"), by=1))
+Days$Date<-Days$`seq(as.Date("2010/01/01"), as.Date("2019/12/31"), by = 1)`
+Days.1<-Days%>%
+  select("Date")
 
 # 6
-GaringerOzone_processed<-left_join(GaringerOzone_wrangle, Days)
+GaringerOzone_processed<-left_join(GaringerOzone_wrangle, Days.1, by="Date")
+
+#I used a different name to make sure I kept all the dataframes seperate 
 ```
 
 ## Visualize
@@ -116,6 +121,8 @@ GaringerOzone_processed<-left_join(GaringerOzone_wrangle, Days)
 
 ```{r}
 #7
+
+
 
 ```
 
