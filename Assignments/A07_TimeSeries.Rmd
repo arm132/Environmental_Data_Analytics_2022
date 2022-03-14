@@ -112,7 +112,7 @@ Days.1<-Days%>%
 # 6
 GaringerOzone_processed<-left_join(GaringerOzone_wrangle, Days.1, by="Date")
 
-#I used a different name to make sure I kept all the dataframes seperate 
+#I used a different name to make sure I kept all the dataframes separate 
 ```
 
 ## Visualize
@@ -122,11 +122,16 @@ GaringerOzone_processed<-left_join(GaringerOzone_wrangle, Days.1, by="Date")
 ```{r}
 #7
 
-
+Garingerplot<-
+  ggplot(GaringerOzone_processed, aes(x=Date,y=Daily.Max.8.hour.Ozone.Concentration))+
+           geom_line()+geom_smooth(method = "lm") + 
+  labs(x="Date", y="Ozone Concentration")
+ 
+print(Garingerplot)
 
 ```
 
->Answer: 
+>Answer: The plot suggests a decreasing trend in ozone concentration over time. 
 
 ## Time Series Analysis
 
@@ -146,7 +151,7 @@ Study question: Have ozone concentrations changed over the 2010s at this station
 
 ```{r}
 #9
-
+GaringerOzone.monthly<-
 ```
 
 
