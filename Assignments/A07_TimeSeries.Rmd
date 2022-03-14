@@ -54,28 +54,41 @@ theme_set(rorystheme)
 
 #import 
 
-EPAair_NC2010_raw <- read.csv("Data/Raw/Ozone_TimeSeries/EPAair_O3_GaringerNC2010_raw.csv", stringsAsFactors = TRUE)
+EPAair_NC2010_raw <- read.csv("/Users/rorymccollum/Desktop/Rdata/Environmental_Data_Analytics_2022/Data/Raw/Ozone_TimeSeries/EPAair_O3_GaringerNC2010_raw.csv",
+                              stringsAsFactors = TRUE)
 
-EPAair_NC2011_raw <- read.csv("Data/Raw/Ozone_TimeSeries/EPAair_O3_GaringerNC2011_raw.csv", stringsAsFactors = TRUE)
+EPAair_NC2011_raw <- read.csv("/Users/rorymccollum/Desktop/Rdata/Environmental_Data_Analytics_2022/Data/Raw/Ozone_TimeSeries/EPAair_O3_GaringerNC2011_raw.csv",
+                              stringsAsFactors = TRUE)
 
-EPAair_NC2012_raw <- read.csv("Data/Raw/Ozone_TimeSeries/EPAair_O3_GaringerNC2012_raw.csv", stringsAsFactors = TRUE)
+EPAair_NC2012_raw <- read.csv("/Users/rorymccollum/Desktop/Rdata/Environmental_Data_Analytics_2022/Data/Raw/Ozone_TimeSeries/EPAair_O3_GaringerNC2012_raw.csv",
+                              stringsAsFactors = TRUE)
 
-EPAair_NC2013_raw <- read.csv("Data/Raw/Ozone_TimeSeries/EPAair_O3_GaringerNC2013_raw.csv", stringsAsFactors = TRUE)
+EPAair_NC2013_raw <- read.csv("/Users/rorymccollum/Desktop/Rdata/Environmental_Data_Analytics_2022/Data/Raw/Ozone_TimeSeries/EPAair_O3_GaringerNC2013_raw.csv",
+                              stringsAsFactors = TRUE)
 
-EPAair_NC2014_raw <- read.csv("Data/Raw/Ozone_TimeSeries/EPAair_O3_GaringerNC2014_raw.csv", stringsAsFactors = TRUE)
+EPAair_NC2014_raw <- read.csv("/Users/rorymccollum/Desktop/Rdata/Environmental_Data_Analytics_2022/Data/Raw/Ozone_TimeSeries/EPAair_O3_GaringerNC2014_raw.csv",
+                              stringsAsFactors = TRUE)
 
-EPAair_NC2015_raw <- read.csv("Data/Raw/Ozone_TimeSeries/EPAair_O3_GaringerNC2015_raw.csv", stringsAsFactors = TRUE)
+EPAair_NC2015_raw <- read.csv("/Users/rorymccollum/Desktop/Rdata/Environmental_Data_Analytics_2022/Data/Raw/Ozone_TimeSeries/EPAair_O3_GaringerNC2015_raw.csv",
+                              stringsAsFactors = TRUE)
 
-EPAair_NC2016_raw <- read.csv("Data/Raw/Ozone_TimeSeries/EPAair_O3_GaringerNC2016_raw.csv", stringsAsFactors = TRUE)
+EPAair_NC2016_raw <- read.csv("/Users/rorymccollum/Desktop/Rdata/Environmental_Data_Analytics_2022/Data/Raw/Ozone_TimeSeries/EPAair_O3_GaringerNC2016_raw.csv",
+                              stringsAsFactors = TRUE)
 
-EPAair_NC2017_raw <- read.csv("Data/Raw/Ozone_TimeSeries/EPAair_O3_GaringerNC2017_raw.csv", stringsAsFactors = TRUE)
+EPAair_NC2017_raw <- read.csv("/Users/rorymccollum/Desktop/Rdata/Environmental_Data_Analytics_2022/Data/Raw/Ozone_TimeSeries/EPAair_O3_GaringerNC2017_raw.csv",
+                              stringsAsFactors = TRUE)
 
-EPAair_NC2018_raw <- read.csv("Data/Raw/Ozone_TimeSeries/EPAair_O3_GaringerNC2018_raw.csv", stringsAsFactors = TRUE)
+EPAair_NC2018_raw <- read.csv("/Users/rorymccollum/Desktop/Rdata/Environmental_Data_Analytics_2022/Data/Raw/Ozone_TimeSeries/EPAair_O3_GaringerNC2018_raw.csv",
+                              stringsAsFactors = TRUE)
 
-EPAair_NC2019_raw <- read.csv("Data/Raw/Ozone_TimeSeries/EPAair_O3_GaringerNC2019_raw.csv", stringsAsFactors = TRUE)
+EPAair_NC2019_raw <- read.csv("/Users/rorymccollum/Desktop/Rdata/Environmental_Data_Analytics_2022/Data/Raw/Ozone_TimeSeries/EPAair_O3_GaringerNC2019_raw.csv",
+                              stringsAsFactors = TRUE)
 
 #combine 
-GaringerOzone<-rbind(EPAair_NC2010_raw, EPAair_NC2011_raw, EPAair_NC2012_raw, EPAair_NC2013_raw, EPAair_NC2014_raw, EPAair_NC2015_raw, EPAair_NC2016_raw, EPAair_NC2017_raw, EPAair_NC2018_raw, EPAair_NC2019_raw)
+GaringerOzone<-rbind(EPAair_NC2010_raw, EPAair_NC2011_raw, EPAair_NC2012_raw,
+                     EPAair_NC2013_raw, EPAair_NC2014_raw, EPAair_NC2015_raw, 
+                     EPAair_NC2016_raw, EPAair_NC2017_raw, EPAair_NC2018_raw, 
+                     EPAair_NC2019_raw)
 
 view(GaringerOzone)
 ```
@@ -171,7 +184,8 @@ view(GaringerOzone.monthly)
 
 ```{r}
 #10
-GaringerOzone.daily.ts<-ts(GaringerOzone.clean$Daily.Max.8.hour.Ozone.Concentration, start=c(2010,1), frequency =365)
+GaringerOzone.daily.ts<-ts(GaringerOzone.clean$Daily.Max.8.hour.Ozone.Concentration,
+                           start=c(2010,1), frequency =365)
 
   
 GaringerOzone.monthly.ts<- ts(GaringerOzone.monthly$MeanOzone, start=c(2010,1), frequency =12)
