@@ -268,4 +268,4 @@ summary(ozonetrend2)
 
 ```
 
-> Answer: 
+> Answer: The p-value for this test is higher, 0.3 instead of 0.02. The results of this test are not significant, and we do not reject the null hypothesis. 
