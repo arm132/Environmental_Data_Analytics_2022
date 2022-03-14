@@ -104,10 +104,10 @@ view(GaringerOzone_wrangle)
 
 # 5
 
-Days<-as.data.frame(seq(from = 2010:01:01, to = 2019:12:31))
+Days<-as.data.frame(seq(as.Date("2010/01/01"), as.Date("2019/12/31"), by=1))
 
 # 6
-GaringerOzone_processed<-left_join(GraingerOzone_wrangle, Days)
+GaringerOzone_processed<-left_join(GaringerOzone_wrangle, Days)
 ```
 
 ## Visualize
