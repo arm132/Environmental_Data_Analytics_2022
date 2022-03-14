@@ -98,11 +98,16 @@ GaringerOzone$Date <- mdy(GaringerOzone$Date)
 class(GaringerOzone$Date)
 
 # 4
+GaringerOzone_wrangle<-GaringerOzone %>%
+  select(Date, Daily.Max.8.hour.Ozone.Concentration, DAILY_AQI_VALUE)
+view(GaringerOzone_wrangle)
 
 # 5
 
-# 6
+Days<-as.data.frame(seq(from = 2010:01:01, to = 2019:12:31))
 
+# 6
+GaringerOzone_processed<-left_join(GraingerOzone_wrangle, Days)
 ```
 
 ## Visualize
