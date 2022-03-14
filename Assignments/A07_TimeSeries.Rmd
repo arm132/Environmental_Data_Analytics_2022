@@ -142,7 +142,7 @@ Study question: Have ozone concentrations changed over the 2010s at this station
 ```{r}
 #8
 
-ozone.interp<-GaringerOzone_processed %>% 
+GaringerOzone.clean<-GaringerOzone_processed %>% 
   mutate(Daily.Max.8.hour.Ozone.Concentration=zoo::na.approx(Daily.Max.8.hour.Ozone.Concentration))
 
 ```
@@ -154,8 +154,16 @@ ozone.interp<-GaringerOzone_processed %>%
 
 ```{r}
 #9
-GaringerOzone.monthly<-
+GaringerOzone.monthly<-GaringerOzone.clean %>% 
+                          mutate(month=month(Date), 
+                                 year=year(Date)) %>%
+  mutate(Date=my(paste0(month, "-", year))) %>%
+  dplyr::group_by(Date, month, year) %>%
+  dplyr::summarise(MeanOzone=mean(Daily.Max.8.hour.Ozone.Concentration))%>%
+  select(MeanOzone,Date)
+                                 
   
+view(GaringerOzone.monthly)
 ```
 
 
@@ -163,12 +171,11 @@ GaringerOzone.monthly<-
 
 ```{r}
 #10
-GaringerOzone.daily.ts<-ts(DATA, start=c(year, month), frequency = )
+GaringerOzone.daily.ts<-ts(GaringerOzone.clean$Daily.Max.8.hour.Ozone.Concentration, start=c(2010,1), frequency =365)
 
   
-GaringerOzone.monthly.ts<- ts(DATA, start=c(year, month), frequency = )
+GaringerOzone.monthly.ts<- ts(GaringerOzone.monthly$MeanOzone, start=c(2010,1), frequency =12)
   
-  #ex EnoDischarge.late_ts <- ts(EnoDischarge.late$discharge.mean, start = c(1985,1), frequency = 365)
 ```
 
 
@@ -177,8 +184,12 @@ GaringerOzone.monthly.ts<- ts(DATA, start=c(year, month), frequency = )
 ```{r}
 #11
 
-# Generate the decomposition
-#EnoDischarge.late_Decomposed <- stl(EnoDischarge.late_ts, s.window = "periodic")
+Garingerdaily.decomposed<-stl(GaringerOzone.daily.ts, s.window = "periodic")
+plot(Garingerdaily.decomposed)
+
+Garingermonthly.decomposed<-stl(GaringerOzone.monthly.ts, s.window = "periodic")
+plot(Garingermonthly.decomposed)
+
 ```
 
 
