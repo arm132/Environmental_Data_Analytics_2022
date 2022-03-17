@@ -2,7 +2,9 @@
 title: "Spatial Analysis in R, Part 2"
 author: "Environmental Data Analytics | John Fay & Luana Lima"
 date: "Spring 2022"
-output: pdf_document
+output:
+  html_document:
+    df_print: paged
 editor_options:
   chunk_output_type: console
 ---
@@ -59,7 +61,7 @@ First, we'll read in our EPA air quality sites, as we did in the previous exerci
 
 ```{r convert.tabular.data.to.sf.object}
 #Read our EPA points into a spatial dataframe
-epa_pm25_sites_sf <- read_csv('./Data/Raw/EPAair_PM25_NC2018_raw.csv') %>% 
+epa_pm25_sites_sf <- read_csv('/Users/rorymccollum/Desktop/Rdata/Environmental_Data_Analytics_2022/.RData/Data/Raw/EPAair_PM25_NC2018_raw.csv') %>% 
   group_by(`Site Name`, COUNTY, SITE_LATITUDE, SITE_LONGITUDE) %>% 
   summarize(
     meanPM = mean(`Daily Mean PM2.5 Concentration`,na.rm=T),
@@ -117,20 +119,23 @@ mapView(counties_sf, zcol = "AWATER")
 
 ```{r read HUCs shapefile}
 #Read the shapefile into an sf dataframe named "huc8_sf"
+huc8_sf<- st_read('./Data/Spatial/NCHUC8.shp')
 
 
 #Reveal the columns
-
+colnames(huc8_sf)
 
 #Check the CRS
-
+st_crs(huc8_sf)
 
 #Examine some records
-
+head(huc8_sf)
 
 #View the data as a map, colored by the acreage in each
 
-
+ggplot(data=huc8_sf) +
+  geom_sf(aes(fill=ACRES))+
+  scale_fill_continuous(type='viridis')
 ```
 
 ### 2.2.3 Challenge!
@@ -139,12 +144,16 @@ mapView(counties_sf, zcol = "AWATER")
 
 ```{r Select the Upper Neuse HUC 8}
 #Read the shapefile into an sf dataframe
-
+huc8_sf.subet<-st_read('./Data/Spatial') %>%
+  filter(SUBBASIN==Upperneuse)
 
 
 #Create a map
-
-
+ggplot() +
+  geom_sf(data=huc8_sf, fill='orange') +
+  geom_sf(data=huc8_sf.subset, fill='purple')
+  
+  #order is importnat!
 ```
 
 ### 2.2.4 Reading in GeoJSON data
@@ -240,13 +249,21 @@ ggplot() +
 ```{r}
 #Compute HUC8 wind energy
 
-
+wind_raw<-read.csv('https://raw.githubusercontent.com/ENV859/EnviroAtlasData/main/Wind_Energy.csv', colClasses=c('HUC_12'='factor')) %>%
+  mutate(HUC_8=substr(HUC_12,1,8)) %>%
+  group_by(HUC_8)%>%
+  summarize(windpower=sum(AvgWindEnergy))
 
 
 #Join to HUC_8 features
+huc8_wind<-merge(x= huc8_sf, 
+                 y= wind_raw, 
+                 by.x="HUC_8", 
+                 by.y="HUC_8")
 
 
-
+ggplot(huc8_wind) +
+  geom_sf(aes(fill=windpower))
 
 #View the outputs
 
