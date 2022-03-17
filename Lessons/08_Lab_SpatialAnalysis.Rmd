@@ -24,6 +24,7 @@ editor_options:
  * Transforming data from one CRS to another
  * Spatial operations: spatial selection and intersection
 
+**google "r sf cheat sheet" for help**
 
 # 1. SET UP
 ```{r setup}
