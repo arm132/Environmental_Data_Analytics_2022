@@ -159,7 +159,7 @@ gageheight<-read.csv('/Users/rorymccollum/Desktop/Rdata/Environmental_Data_Analy
 colnames(gageheight)
 
 #16. Join location data to it
-all_gage_data<-left_join(gageheight, gagedata_raw, by="site_no")
+all_gage_data<-left_join(gageheight, gagedata_sf, by="site_no")
 
 #17. Show the column names of the joined dataset
 names(all_gage_data)
@@ -178,7 +178,9 @@ Now we can examine where the flooding appears most acute by visualizing gage hei
 ```{r}
 #Map the points, sized by gage height
 ggplot()+
-  geom_sf(data=counties, fill='orange')
+  geom_sf(data=counties, fill='orange')+
+  geom_sf(data = all_gage_data, aes(fill=gage_ht), alpha=0.3)+
+  scale_fill_gradient2(low = "blue", high="red")
 
 #ggplot
 
@@ -228,6 +230,7 @@ Lancaster<-counties.utm %>%
 
 #23 Select gages within the selected county
 Lancaster.gages<-gage_location.utm()
+#check 3.3 in 08.2
 
 #24 Plot
 
