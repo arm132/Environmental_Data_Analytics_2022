@@ -127,6 +127,10 @@ names(gagedata_sf)
 
 ```{r Plot the spatial features}
 #13. Plot the gage locations atop the county features
+ggplot() +
+  geom_sf(data=counties, fill='orange') +
+  geom_sf(data=gagedata_sf, fill='green') +
+  ggtitle("NWIS Gage Locations in Nebraska", subtitle = "Aurora McCollum")
 
 
 ```
