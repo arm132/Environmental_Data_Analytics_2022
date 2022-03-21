@@ -155,16 +155,16 @@ Lastly, we want to attach some gage height data to our site locations. I've cons
 #14. Read the site flow data into a data frame
 gageheight<-read.csv('/Users/rorymccollum/Desktop/Rdata/Environmental_Data_Analytics_2022/Data/Raw/NWIS_SiteFlowData_NE_RAW.csv')
 
+
+
 #15. Show the column names
 colnames(gageheight)
 
 #16. Join location data to it
-#all_gage_data<-left_join(gageheight, gagelocation_sf, by="site_no")
 
-all_gage_data<- merge(x=gageheight, 
-                      y=gagelocation_sf, 
+all_gage_data<- merge(x=gagelocation_sf, 
+                      y=gageheight, 
                       by="site_no")
-
 
 #17. Show the column names of the joined dataset
 names(all_gage_data)
@@ -184,12 +184,10 @@ Now we can examine where the flooding appears most acute by visualizing gage hei
 #Map the points, sized by gage height
 ggplot()+
   geom_sf(data=NE.counties, fill='orange')+
-  geom_sf(data = all_gage_data, aes(fill=gage_ht), alpha=0.3)+
-  scale_fill_gradient2(low = "blue", high="red")
+  geom_sf(data = all_gage_data, aes(fill=gage_ht), alpha=0.3)
 
 #ggplot
 
-#CHECK BACK ON THIS!!!!! 
 ```
 
 ---
@@ -206,13 +204,13 @@ Up next we will do some spatial analysis with our data. To prepare for this, we 
 
 ```{r}
 #20 Transform the counties and gage location datasets to UTM Zone 14
-counties.utm<-st_transform(counties, 32614)
-gage_location.utm<-st_transform(gagedata_sf,32614)
+NE.counties.utm<-st_transform(NE.counties, 32614)
+gage.utm<-st_transform(all_gage_data,32614)
 
 #21 Plot the data
 ggplot()+
-  geom_sf(data=counties.utm, color="green")+
-  geom_sf(data=gage_location.utm, color="blue")
+  geom_sf(data=NE.counties.utm, color="green")+
+  geom_sf(data=gage.utm, color="blue")
 
 ```
 
@@ -230,17 +228,19 @@ Now let's zoom into a particular county and examine the gages located there.
 
 ```{r}
 #22 Select the county
-Lancaster<-counties.utm %>%
+Lancaster<-NE.counties.utm %>%
   filter(NAME %in% c('Lancaster'))
 
 #23 Select gages within the selected county
-Lancaster.gages<-gage_location.utm()
+Lancaster.gages<-gage.utm[Lancaster,]
+
 #check 3.3 in 08.2
 
 #24 Plot
 
 ggplot()+
-  geom_sf(counties)
+  geom_sf(data=NE.counties.utm, color="green") +
+  geom_sf(data=Lancaster, color="blue") +
+  geom_sf(data=Lancaster.gages, color="red")
   
-
 ```
