@@ -55,16 +55,16 @@ In this exercise, we will be exploring stream gage height data in Nebraska corre
 ```{r Read the county data into an sf dataframe}
 #3. Read in Counties shapefile into an sf dataframe, filtering for just NE counties
 
-counties<- st_read('/Users/rorymccollum/Desktop/Rdata/Environmental_Data_Analytics_2022/Data/Spatial/cb_2018_us_county_20m.shp') %>%
+NE.counties<- st_read('/Users/rorymccollum/Desktop/Rdata/Environmental_Data_Analytics_2022/Data/Spatial/cb_2018_us_county_20m.shp') %>%
   filter(STATEFP == 31) 
 
 
 #4. Reveal the CRS of the counties features
-st_crs(counties)
+st_crs(NE.counties)
 
 
 #5. Plot the data
-ggplot(data=counties) +
+ggplot(data=NE.counties) +
   geom_sf()
 ```
 
@@ -85,10 +85,10 @@ Next we'll read in some USGS/NWIS gage location data added to the `Data/Raw` fol
 ```{r Read in USGS Gage Locations}
 #7. Read in gage locations csv as a dataframe
 
-gagedata_raw<-read.csv('/Users/rorymccollum/Desktop/Rdata/Environmental_Data_Analytics_2022/Data/Raw/NWIS_SiteInfo_NE_RAW.csv')
+gagelocation<-read.csv('/Users/rorymccollum/Desktop/Rdata/Environmental_Data_Analytics_2022/Data/Raw/NWIS_SiteInfo_NE_RAW.csv')
 
 #8. Reveal the names of the columns
-colnames(gagedata_raw)
+colnames(gagelocation)
 
 ```
 
@@ -106,12 +106,12 @@ colnames(gagedata_raw)
 
 ```{r Convert dataframe to sf dataframe}
 #10. Convert to an sf object
-gagedata_sf<-gagedata_raw %>%
+gagelocation_sf<-gagelocation %>%
   st_as_sf(coords=c('dec_long_va','dec_lat_va'), crs=4269)
 
 
 #11. Re-examine the column names
-names(gagedata_sf)
+names(gagelocation_sf)
 
 ```
 
@@ -131,8 +131,8 @@ names(gagedata_sf)
 ```{r Plot the spatial features}
 #13. Plot the gage locations atop the county features
 ggplot() +
-  geom_sf(data=counties, fill='orange') +
-  geom_sf(data=gagedata_sf, fill='green') +
+  geom_sf(data=NE.counties, fill='orange') +
+  geom_sf(data=gagelocation_sf, fill='green') +
   ggtitle("NWIS Gage Locations in Nebraska", subtitle = "Aurora McCollum")
 
 
@@ -159,7 +159,12 @@ gageheight<-read.csv('/Users/rorymccollum/Desktop/Rdata/Environmental_Data_Analy
 colnames(gageheight)
 
 #16. Join location data to it
-all_gage_data<-left_join(gageheight, gagedata_sf, by="site_no")
+#all_gage_data<-left_join(gageheight, gagelocation_sf, by="site_no")
+
+all_gage_data<- merge(x=gageheight, 
+                      y=gagelocation_sf, 
+                      by="site_no")
+
 
 #17. Show the column names of the joined dataset
 names(all_gage_data)
@@ -178,7 +183,7 @@ Now we can examine where the flooding appears most acute by visualizing gage hei
 ```{r}
 #Map the points, sized by gage height
 ggplot()+
-  geom_sf(data=counties, fill='orange')+
+  geom_sf(data=NE.counties, fill='orange')+
   geom_sf(data = all_gage_data, aes(fill=gage_ht), alpha=0.3)+
   scale_fill_gradient2(low = "blue", high="red")
 
