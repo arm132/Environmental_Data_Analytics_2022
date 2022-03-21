@@ -70,7 +70,7 @@ ggplot(data=counties) +
 
 6. What is the EPSG code of the Counties dataset? Is this a geographic or a projected coordinate reference system? (Or, does this CRS use angular or planar coordinate units?) To what datum is this CRS associated? (Tip: look the EPSG code on <https://spatialreference.org>) 
 
-> ANSWER: The EPSG code of the Counties dataset is 4269. This is a geographic crs. The datum this CRS is associated with is --- 
+> ANSWER: The EPSG code of the Counties dataset is 4269. This is a geographic crs. This CRS is associated with the North American Datum.
 > 
 
 
@@ -182,7 +182,7 @@ ggplot()+
 
 #ggplot
 
-
+#CHECK BACK ON THIS!!!!! 
 ```
 
 ---
@@ -199,10 +199,13 @@ Up next we will do some spatial analysis with our data. To prepare for this, we 
 
 ```{r}
 #20 Transform the counties and gage location datasets to UTM Zone 14
-
+counties.utm<-st_transform(counties, 32614)
+gage_location.utm<-st_transform(gagedata_sf,32614)
 
 #21 Plot the data
-
+ggplot()+
+  geom_sf(data=counties.utm, color="green")+
+  geom_sf(data=gage_location.utm, color="blue")
 
 ```
 
@@ -220,13 +223,16 @@ Now let's zoom into a particular county and examine the gages located there.
 
 ```{r}
 #22 Select the county
-
+Lancaster<-counties.utm %>%
+  filter(NAME %in% c('Lancaster'))
 
 #23 Select gages within the selected county
-
+Lancaster.gages<-gage_location.utm()
 
 #24 Plot
 
-
+ggplot()+
+  geom_sf(counties)
+  
 
 ```
