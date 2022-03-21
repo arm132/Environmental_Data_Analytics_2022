@@ -65,7 +65,7 @@ st_crs(NE.counties)
 
 #5. Plot the data
 ggplot(data=NE.counties) +
-  geom_sf()
+  geom_sf(color="purple")
 ```
 
 6. What is the EPSG code of the Counties dataset? Is this a geographic or a projected coordinate reference system? (Or, does this CRS use angular or planar coordinate units?) To what datum is this CRS associated? (Tip: look the EPSG code on <https://spatialreference.org>) 
@@ -132,7 +132,7 @@ names(gagelocation_sf)
 #13. Plot the gage locations atop the county features
 ggplot() +
   geom_sf(data=NE.counties, fill='orange') +
-  geom_sf(data=gagelocation_sf, fill='green') +
+  geom_sf(data=gagelocation_sf, color="green") +
   ggtitle("NWIS Gage Locations in Nebraska", subtitle = "Aurora McCollum")
 
 
@@ -183,7 +183,7 @@ Now we can examine where the flooding appears most acute by visualizing gage hei
 ```{r}
 #Map the points, sized by gage height
 ggplot()+
-  geom_sf(data=NE.counties, fill='orange')+
+  geom_sf(data=NE.counties, color="orange")+
   geom_sf(data = all_gage_data, aes(fill=gage_ht), alpha=0.3)
 
 #ggplot
@@ -240,7 +240,7 @@ Lancaster.gages<-gage.utm[Lancaster,]
 
 ggplot()+
   geom_sf(data=NE.counties.utm, color="green") +
-  geom_sf(data=Lancaster, color="blue") +
+  geom_sf(data=Lancaster, fill='blue') +
   geom_sf(data=Lancaster.gages, color="red")
   
 ```
