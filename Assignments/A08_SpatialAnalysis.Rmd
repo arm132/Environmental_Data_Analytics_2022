@@ -67,7 +67,7 @@ ggplot(data=counties) +
 
 6. What is the EPSG code of the Counties dataset? Is this a geographic or a projected coordinate reference system? (Or, does this CRS use angular or planar coordinate units?) To what datum is this CRS associated? (Tip: look the EPSG code on <https://spatialreference.org>) 
 
-> ANSWER: The EPSG code of the Counties dataset is ---. This is a --- crs. 
+> ANSWER: The EPSG code of the Counties dataset is 4269. This is a geographic crs. The datum this CRS is associated with is --- 
 > 
 
 
@@ -85,12 +85,12 @@ Next we'll read in some USGS/NWIS gage location data added to the `Data/Raw` fol
 gagedata_raw<-read.csv('/Users/rorymccollum/Desktop/Rdata/Environmental_Data_Analytics_2022/Data/Raw/NWIS_SiteInfo_NE_RAW.csv')
 
 #8. Reveal the names of the columns
-names(gagedata_raw)
+colnames(gagedata_raw)
 
 ```
 
 9. What columns in the dataset contain the x and y coordinate values, respectively?  
-> ANSWER: x = "dec_lat_va" and y = "dec_long_va"
+> ANSWER: x = "dec_long_va" and y = "dec_lat_va"
 > 
 
 
@@ -103,16 +103,18 @@ names(gagedata_raw)
 
 ```{r Convert dataframe to sf dataframe}
 #10. Convert to an sf object
-gagedata_sf<-
+gagedata_sf<-gagedata_raw %>%
+  st_as_sf(coords=c('dec_long_va','dec_lat_va'), crs=4269)
+
 
 #11. Re-examine the column names
-colnames(gagedata_sf)
+names(gagedata_sf)
 
 ```
 
 12. What new field(s) appear in the sf dataframe created? What field(s), if any, disappeared?
 
->ANSWER: 
+>ANSWER: "geometry" appeared while "dec_lat_va" and "dec_long_va" disappeared. 
 >
 
 
