@@ -183,7 +183,7 @@ Now we can examine where the flooding appears most acute by visualizing gage hei
 ```{r}
 #Map the points, sized by gage height
 ggplot()+
-  geom_sf(data=NE.counties, color='orange')+
+  geom_sf(data=NE.counties, fill="orange")+
   geom_sf(data = all_gage_data, aes(fill=gage_ht), alpha=0.7)
 
 
