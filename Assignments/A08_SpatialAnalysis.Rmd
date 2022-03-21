@@ -1,11 +1,13 @@
 ---
-title: "Assignment 9: Spatial Analysis in R"
+title: 'Assignment 9: Spatial Analysis in R'
 author: "Aurora McCollum"
-output: pdf_document
+output:
+  html_document:
+    df_print: paged
 geometry: margin=2.54cm
-editor_options: 
+editor_options:
   chunk_output_type: console
-  markdown: 
+  markdown:
     wrap: 72
 ---
 
@@ -38,6 +40,7 @@ library(tidyverse)
 library(sf)
 library(leaflet)
 library(mapview)
+mapviewOptions(fgb = FALSE)
 
 ```
 
@@ -150,19 +153,19 @@ Lastly, we want to attach some gage height data to our site locations. I've cons
 
 ```{r}
 #14. Read the site flow data into a data frame
-
+gageheight<-read.csv('/Users/rorymccollum/Desktop/Rdata/Environmental_Data_Analytics_2022/Data/Raw/NWIS_SiteFlowData_NE_RAW.csv')
 
 #15. Show the column names
-
+colnames(gageheight)
 
 #16. Join location data to it
-
+all_gage_data<-left_join(gageheight, gagedata_raw, by="site_no")
 
 #17. Show the column names of the joined dataset
-
+names(all_gage_data)
 
 #18. Show the dimensions of this joined dataset
-
+dim(all_gage_data)
 
 ```
 
@@ -174,7 +177,8 @@ Now we can examine where the flooding appears most acute by visualizing gage hei
 
 ```{r}
 #Map the points, sized by gage height
-
+ggplot()+
+  geom_sf(data=counties, fill='orange')
 
 #ggplot
 
