@@ -27,6 +27,7 @@ This exercise accompanies the lessons in Environmental Data Analytics on data sc
 * Check your working directory
 * Load the packages `tidyverse`, `rvest`, and any others you end up using.
 * Set your ggplot theme
+Use max daily use!! not average!
 
 ```{r, message = FALSE}
 #1
@@ -34,9 +35,9 @@ This exercise accompanies the lessons in Environmental Data Analytics on data sc
 
 ```
 
-2. We will be scraping data from the NC DEQs Local Water Supply Planning website, specifically the Durham's 2019 Municipal Local Water Supply Plan (LWSP): 
+2. We will be scraping data from the NC DEQs Local Water Supply Planning website, specifically the Durham's 2020 Municipal Local Water Supply Plan (LWSP): 
  * Navigate to https://www.ncwater.org/WUDC/app/LWSP/search.php
- * Change the date from 2020 to 2019 in the upper right corner.
+ * Change the date from 2020 in the upper right corner.
  * Scroll down and select the LWSP link next to Durham Municipality. 
  * Note the web address: <https://www.ncwater.org/WUDC/app/LWSP/report.php?pwsid=03-32-010&year=2020>
 
