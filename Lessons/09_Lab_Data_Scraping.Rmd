@@ -82,10 +82,10 @@ The power in this is that we aren't limited to sending requests and handling res
 
 ```{r pull.and.plot.discharge.data}
 #Set the URL
-theURL <- 'https://waterdata.usgs.gov/nwis/uv?search_site_no=02087500&period=7&format=rdb'
+theURL <- 'https://waterdata.usgs.gov/nwis/uv?search_site_no=02085070&period=24&format=rdb'
 
-#Get the data, which starts on line 30
-gage_data <- read.table(theURL,skip = 29,header=TRUE,sep='\t') 
+#Get the data, which starts on line 29
+gage_data <- read.table(theURL,skip = 28,header=TRUE,sep='\t') 
 
 #Update the column headers
 colnames(gage_data) = c("agency_cd", "site_no", "datetime", "tz_cd",
