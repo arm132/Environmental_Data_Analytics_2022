@@ -31,7 +31,20 @@ Use max daily use!! not average!
 
 ```{r, message = FALSE}
 #1
+getwd()
 
+library(tidyverse)
+library(lubridate)
+library(viridis)
+library(rvest)
+library(dataRetrieval)
+
+rorystheme<-theme_classic(base_size = 14) +
+  theme(axis.text = element_text(color = "black"), 
+        panel.background = element_rect(fill = "blanchedalmond"),
+        legend.position = "right")
+
+theme_set(rorystheme)
 
 ```
 
