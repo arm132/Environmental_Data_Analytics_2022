@@ -59,8 +59,10 @@ Indicate this website as the as the URL to be scraped. (In other words, read the
 
 ```{r set.the.scraping.website}
 #2
+webpage <- read_html('https://www.ncwater.org/WUDC/app/LWSP/report.php?pwsid=03-32-010&year=2020')
+webpage
 
-
+rvest::
 ```
 
 3. The data we want to collect are listed below:
@@ -79,11 +81,23 @@ In the code chunk below scrape these values, assigning them to three separate va
 
 ```{r scrape.the.data}
 #3
-water.system.name <- 
-pswid <- 
-ownership <- 
-max.withdrawals.mgd <- 
 
+water.system.name <-  webpage %>% 
+  html_nodes("div+ table tr:nth-child(1) td:nth-child(2)") %>%
+  html_text()
+water.system.name
+
+pswid <-  webpage %>% html_nodes("td tr:nth-child(1) td:nth-child(5)") %>%
+  html_text()
+pswid
+
+ownership <-  webpage %>% html_nodes("div+ table tr:nth-child(2) td:nth-child(4)") %>%
+  html_text()
+ownership
+
+max.withdrawals.mgd <-  webpage %>% html_nodes("th~ td+ td") %>%
+  html_text()
+max.withdrawals.mgd
 ```
 
 
