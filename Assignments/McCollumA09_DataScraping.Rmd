@@ -127,7 +127,8 @@ df_watersystem <- data.frame("Month" = (weirdmonths),
 #5
 
 ggplot(df_watersystem,aes(x=Date,y=Max_Withdrawals_mgd)) + 
-  geom_point() +
+  geom_line() + 
+  geom_smooth(method="loess",se=FALSE) +
   labs(title = paste("2020 Water usage data for",water.system.name),
        y="Withdrawal (mgd)",
        x="Date")
