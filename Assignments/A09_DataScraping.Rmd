@@ -111,12 +111,29 @@ max.withdrawals.mgd
 
 ```{r create.a.dataframe.from.scraped.data}
 #4
+weirdmonths<-c("Jan", "May", "Sept", "Feb", "Jun", "Oct", "Mar", "Jul", "Nov", "Apr", "Aug", "Dec")
 
+date1<-make_date(year = 2020, month = )
+
+df_watersystem <- data.frame("Month" = (weirdmonths),
+                             "Year" = rep(2020,12),
+                             "Max_Withdrawals_mgd" = as.numeric(max.withdrawals.mgd),
+                             "Ownership" = (ownership), 
+                             "PWSID"=(pswid), 
+                             "Water_System_Name"= (water.system.name))
+
+df_max_withdrawal <- df_watersystem %>%
+  Date = my(paste(Month,"-",Year))
 
 
 #5
 
-
+ggplot(df_watersystem,aes(x=Date,y=Max_Withdrawals_mgd)) + 
+  geom_line() + 
+  geom_smooth(method="loess",se=FALSE) +
+  labs(title = paste("2020 Water usage data for",water.system.name),
+       y="Withdrawal (mgd)",
+       x="Date")
 
 ```
 
