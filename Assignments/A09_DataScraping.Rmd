@@ -62,7 +62,6 @@ Indicate this website as the as the URL to be scraped. (In other words, read the
 webpage <- read_html('https://www.ncwater.org/WUDC/app/LWSP/report.php?pwsid=03-32-010&year=2020')
 webpage
 
-rvest::
 ```
 
 3. The data we want to collect are listed below:
@@ -113,24 +112,22 @@ max.withdrawals.mgd
 #4
 weirdmonths<-c("Jan", "May", "Sept", "Feb", "Jun", "Oct", "Mar", "Jul", "Nov", "Apr", "Aug", "Dec")
 
-date1<-make_date(year = 2020, month = )
+#date1<-make_date(year = 2020, month = )
 
 df_watersystem <- data.frame("Month" = (weirdmonths),
                              "Year" = rep(2020,12),
                              "Max_Withdrawals_mgd" = as.numeric(max.withdrawals.mgd),
                              "Ownership" = (ownership), 
                              "PWSID"=(pswid), 
-                             "Water_System_Name"= (water.system.name))
-
-df_max_withdrawal <- df_watersystem %>%
-  Date = my(paste(Month,"-",Year))
+                             "Water_System_Name"= (water.system.name)) %>%
+  mutate(Date=my(paste(Month,"-",Year)))
+  
 
 
 #5
 
 ggplot(df_watersystem,aes(x=Date,y=Max_Withdrawals_mgd)) + 
-  geom_line() + 
-  geom_smooth(method="loess",se=FALSE) +
+  geom_point() +
   labs(title = paste("2020 Water usage data for",water.system.name),
        y="Withdrawal (mgd)",
        x="Date")
@@ -142,15 +139,49 @@ ggplot(df_watersystem,aes(x=Date,y=Max_Withdrawals_mgd)) +
 ```{r construct.a.scraping.function}
 #6.
 
+scrapeit<-function(the_year, the_pswid){
 
+  #retrieve website
+The_website <- read_html(paste0('https://www.ncwater.org/WUDC/app/LWSP/report.php?pwsid=',the_pswid,'&year=',the_year))
 
+water.system.name2 <-  The_website %>% 
+  html_nodes("div+ table tr:nth-child(1) td:nth-child(2)") %>%
+  html_text()
+
+pswid2 <-  The_website %>% html_nodes("td tr:nth-child(1) td:nth-child(5)") %>%
+  html_text()
+
+ownership2 <-  The_website %>% html_nodes("div+ table tr:nth-child(2) td:nth-child(4)") %>%
+  html_text()
+
+max.withdrawals.mgd2 <-  The_website %>% html_nodes("th~ td+ td") %>%
+  html_text()
+
+weirdmonths2<-c("Jan", "May", "Sept", "Feb", "Jun", "Oct", "Mar", "Jul", "Nov", "Apr", "Aug", "Dec")
+
+df_watersystem2 <- data.frame("Month" = (weirdmonths2),
+                             "Year" = rep(2020,12),
+                             "Max_Withdrawals_mgd" = as.numeric(max.withdrawals.mgd),
+                             "Ownership" = (ownership), 
+                             "PWSID"=(pswid), 
+                             "Water_System_Name"= (water.system.name)) %>%
+  mutate(Date=my(paste(Month,"-",Year)))
+
+return(df_watersystem2)
+}
 ```
 
 7. Use the function above to extract and plot max daily withdrawals for Durham (PWSID='03-32-010') for each month in 2015
 
 ```{r fetch.and.plot.Durham.2015.data}
 #7
+withdrawl2015<-scrapeit(2015,'03-32-010')
 
+ggplot(withdrawl2015,aes(x=Date,y=Max_Withdrawals_mgd)) + 
+  geom_point() +
+  labs(title = paste("2015 Water usage data for",water.system.name),
+       y="Withdrawal (mgd)",
+       x="Date")
 
 ```
 
@@ -158,6 +189,9 @@ ggplot(df_watersystem,aes(x=Date,y=Max_Withdrawals_mgd)) +
 
 ```{r fetch.and.plot.Durham.2015.data}
 #8
+
+withdrawl2015.Ash<-scrapeit(2015,'01-11-010')
+
 
 
 ```
