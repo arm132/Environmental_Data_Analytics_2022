@@ -77,6 +77,9 @@ Create a table below that details the example datasets we have been using in cla
 
 Create an R chunk below that installs the package `knitr`. Instead of commenting out the code, customize the chunk options such that the code is not evaluated (i.e., not run).
 
+```{r install.packages, eval = FALSE}
+install.packages('knitr')
+```
 
 ### Setup
 
@@ -86,6 +89,29 @@ Load the NTL-LTER_Lake_Nutrients_Raw dataset, display the head of the dataset, a
 
 Customize the chunk options such that the code is run but is not displayed in the final document.
 
+```{r setup, message=FALSE, include=FALSE}
+
+library(tidyverse)
+library(lubridate)
+library(knitr)
+
+rorystheme<-theme_classic(base_size = 14) +
+  theme(axis.text = element_text(color = "black"), 
+        panel.background = element_rect(fill = "blanchedalmond"),
+        legend.position = "right")
+
+theme_set(rorystheme)
+
+library(readr)
+
+Lake_Nutrients_Raw <- read.csv("/Users/rorymccollum/Desktop/Rdata/Environmental_Data_Analytics_2022/Data/Raw/NTL-LTER_Lake_Nutrients_Raw.csv", stringsAsFactors = TRUE)
+
+head(Lake_Nutrients_Raw)
+
+class(Lake_Nutrients_Raw$sampledate)
+Lake_Nutrients_Raw$Date<-mdy(Lake_Nutrients_Raw$sampledate)
+class(Lake_Nutrients_Raw$Date)
+```
 
 ### Data Exploration, Wrangling, and Visualization
 
@@ -95,12 +121,36 @@ Create an R chunk below to create a processed dataset do the following operation
 -   Include only surface samples (depth = 0 m)
 -   Drop rows with missing data
 
+```{r first}
+
+Lake_Nutrients_processed <- Lake_Nutrients_Raw %>%
+  select(lakename:sampledate, depth:po4, Date) %>%
+  filter(depth==0) %>%
+  drop_na()
+
+```
+
 Create a second R chunk to create a summary dataset with the mean, minimum, maximum, and standard deviation of total nitrogen concentrations for each lake. Create a second summary dataset that is identical except that it evaluates total phosphorus. Customize the chunk options such that the code is run but not displayed in the final document.
+```{r second, include=FALSE}
+summarise(Lake_Nutrients_processed)
+
+```
 
 Create a third R chunk that uses the function `kable` in the knitr package to display two tables: one for the summary dataframe for total N and one for the summary dataframe of total P. Use the `caption = " "` code within that function to title your tables. Customize the chunk options such that the final table is displayed but not the code used to generate the table.
+```{r third}
+
+```
 
 Create a fourth and fifth R chunk that generates two plots (one in each chunk): one for total N over time with different colors for each lake, and one with the same setup but for total P. Decide which geom option will be appropriate for your purpose, and select a color palette that is visually pleasing and accessible. Customize the chunk options such that the final figures are displayed but not the code used to generate the figures. In addition, customize the chunk options such that the figures are aligned on the left side of the page. Lastly, add a fig.cap chunk option to add a caption (title) to your plot that will display underneath the figure.
 
+```{r fourth}
+
+```
+
+
+```{r fifth}
+
+```
 
 ### Communicating results
 
