@@ -69,8 +69,8 @@ See: <https://rmarkdown.rstudio.com> and class recording.
 * enables organization of rcode 
 * different coding languages 
 * can hide/show code- managing how products are is displayed
-* add formatted documentation along with code 
-* everything is just code, so reproducibility is easy 
+* add **formatted** documentation along with code 
+* everything is just code/text, so _reproducibility_ is easy 
 
 ## TEXT EDITING CHALLENGE
 
