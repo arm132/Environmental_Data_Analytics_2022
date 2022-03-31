@@ -66,6 +66,11 @@ See: <https://rmarkdown.rstudio.com> and class recording.
 
 <Fill in our discussion below with bullet points. Use italics and bold for emphasis (hint: use the cheat sheets or `Help` →`Markdown Quick Reference` to figure out how to make bold and italic text).> 
 
+* enables organization of rcode 
+* different coding languages 
+* can hide/show code- managing how products are is displayed
+* add formatted documentation along with code 
+* everything is just code, so reproducibility is easy 
 
 ## TEXT EDITING CHALLENGE
 
