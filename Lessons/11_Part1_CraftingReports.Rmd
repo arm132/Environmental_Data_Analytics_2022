@@ -169,7 +169,7 @@ phos_summary
 ```
 
 Create a third R chunk that uses the function `kable` in the knitr package to display two tables: one for the summary dataframe for total N and one for the summary dataframe of total P. Use the `caption = " "` code within that function to title your tables. Customize the chunk options such that the final table is displayed but not the code used to generate the table.
-```{r third}
+```{r third, echo=FALSE}
 kable(nitrogen_summary, caption="Nitrogen Summary Table")
 kable(phos_summary, caption="Phosphorus Summary Table")
 ```
@@ -198,7 +198,7 @@ Write a paragraph describing your findings from the R coding challenge above. Th
 
 ------------------------------------------------------------------------
 
-My next steps would include 
+My next steps would include testing lines of best fit, to see what kind of model might fit the data. I might also run an ANOVA to see if there are statistically significant differences between nitrogen and phosphorus levels between lakes. 
 
 ## KNIT YOUR PDF
 When you have completed the above steps, try knitting your PDF to see if all of the formatting options you specified turned out as planned. This may take some troubleshooting.
