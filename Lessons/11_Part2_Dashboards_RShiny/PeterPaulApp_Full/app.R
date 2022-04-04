@@ -4,14 +4,14 @@ library(shinythemes)
 library(tidyverse)
 
 #### Load data ----
-nutrient_data <- read_csv("Data/NTL-LTER_Lake_Nutrients_PeterPaul_Processed.csv")
+nutrient_data <- read_csv("/Users/rorymccollum/Desktop/Rdata/Environmental_Data_Analytics_2022/Lessons/11_Part2_Dashboards_RShiny/PeterPaulApp_Simple/Data/NTL-LTER_Lake_Nutrients_PeterPaul_Processed.csv")
 nutrient_data$sampledate <- as.Date(nutrient_data$sampledate, format = "%Y-%m-%d")
 nutrient_data <- nutrient_data %>%
   filter(depth_id > 0) %>%
   select(lakename, sampledate:po4)
 
 #### Define UI ----
-ui <- fluidPage(theme = shinytheme("yeti"),
+ui <- fluidPage(theme = shinytheme("superhero"),
   titlePanel("Nutrients in Peter Lake and Paul Lake"),
   sidebarLayout(
     sidebarPanel(
@@ -19,8 +19,8 @@ ui <- fluidPage(theme = shinytheme("yeti"),
       # Select nutrient to plot
       selectInput(inputId = "y", 
                   label = "Nutrient",
-                  choices = c("tn_ug", "tp_ug", "nh34", "no23", "po4"), 
-                  selected = "tp_ug"),
+                  choices = c("po4", "tn_ug", "tp_ug", "nh34", "no23"), 
+                  selected = "po4"),
       
       # Select depth
       checkboxGroupInput(inputId = "fill",
@@ -63,8 +63,8 @@ server <- function(input, output) {
         ggplot(filtered_nutrient_data(), 
                aes_string(x = "sampledate", y = input$y, 
                           fill = "depth_id", shape = "lakename")) +
-          geom_point(alpha = 0.8, size = 2) +
-          theme_classic(base_size = 14) +
+          geom_point(alpha = 0.5, size = 3) +
+          theme_light(base_size = 14) +
           scale_shape_manual(values = c(21, 24)) +
           labs(x = "Date", y = expression(Concentration ~ (mu*g / L)), shape = "Lake", fill = "Depth ID") +
           scale_fill_distiller(palette = "YlOrBr", guide = "colorbar", direction = 1)
