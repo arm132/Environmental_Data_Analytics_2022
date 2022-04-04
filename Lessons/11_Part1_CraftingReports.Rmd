@@ -151,19 +151,19 @@ Create a second R chunk to create a summary dataset with the mean, minimum, maxi
 ```{r second, include=FALSE}
 nitrogen_summary<-Lake_Nutrients_processed %>%
   group_by(lakename) %>%
-  summarise(meanNitrogen=mean(Lake_Nutrients_processed$tn_ug), 
-            stdevNitrogen=sd(Lake_Nutrients_processed$tn_ug), 
-            minNitrogen=min(Lake_Nutrients_processed$tn_ug), 
-            maxNitrogen=max(Lake_Nutrients_processed$tn_ug))
+  summarise(meanNitrogen=mean(tn_ug), 
+            stdevNitrogen=sd(tn_ug), 
+            minNitrogen=min(tn_ug), 
+            maxNitrogen=max(tn_ug))
 
 nitrogen_summary
 
 phos_summary<-Lake_Nutrients_processed %>%
   group_by(lakename) %>%
-  summarise(meanPhos=mean(Lake_Nutrients_processed$tp_ug), 
-            stdevPhos=sd(Lake_Nutrients_processed$tp_ug), 
-            minPhos=min(Lake_Nutrients_processed$tp_ug), 
-            maxPhos=max(Lake_Nutrients_processed$tp_ug))
+  summarise(meanPhos=mean(tp_ug), 
+            stdevPhos=sd(tp_ug), 
+            minPhos=min(tp_ug), 
+            maxPhos=max(tp_ug))
 phos_summary
 
 ```
