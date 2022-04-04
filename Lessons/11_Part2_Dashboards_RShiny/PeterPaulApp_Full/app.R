@@ -65,9 +65,9 @@ server <- function(input, output) {
                           fill = "depth_id", shape = "lakename")) +
           geom_point(alpha = 0.5, size = 3) +
           theme_light(base_size = 14) +
-          scale_shape_manual(values = c(21, 24)) +
+          scale_shape_manual(values = c(22, 23)) +
           labs(x = "Date", y = expression(Concentration ~ (mu*g / L)), shape = "Lake", fill = "Depth ID") +
-          scale_fill_distiller(palette = "YlOrBr", guide = "colorbar", direction = 1)
+          scale_fill_distiller(palette = "Dark2", guide = "colorbar", direction = -1)
           #scale_fill_viridis_c(option = "viridis", begin = 0, end = 0.8, direction = -1)
       })
        
@@ -78,6 +78,7 @@ server <- function(input, output) {
        
   }
 
+##I changed the shinytheme, selected nutrient, ggplot theme, transparency, size, shapes, color and direction. 
 
 #### Create the Shiny app object ----
 shinyApp(ui = ui, server = server)
