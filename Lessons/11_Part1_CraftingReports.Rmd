@@ -194,6 +194,11 @@ print(Pplot)
 
 Write a paragraph describing your findings from the R coding challenge above. This should be geared toward an educated audience but one that is not necessarily familiar with the dataset. Then insert a horizontal rule below the paragraph. Below the horizontal rule, write another paragraph describing the next steps you might take in analyzing this dataset. What questions might you be able to answer, and what analyses would you conduct to answer those questions?
 
+>Answer: This data includes measurements of nutrients in a number of lakes across Wisconsin. The graphs show us that overall, total phosphorus is much lower than total nitrogen across all lakes (look at the scale of the y-axis). I see a bit of a hump around 1996 in both nutrients, and wonder what may have caused that (extra runoff for some reason?). Especially at East Long Lake, it appears to be an outlier in both nitrogen and phosphorus. 
+
+------------------------------------------------------------------------
+
+My next steps would include 
 
 ## KNIT YOUR PDF
 When you have completed the above steps, try knitting your PDF to see if all of the formatting options you specified turned out as planned. This may take some troubleshooting.
