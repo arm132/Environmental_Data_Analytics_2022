@@ -96,7 +96,6 @@ Create an R chunk below that installs the package `knitr`. Instead of commenting
 
 ```{r install.knitr, eval = FALSE, warning=FALSE, include=FALSE}
 install.packages('knitr')
-kable(iris, caption="my table of iris")
 ```
 
 ### Setup
@@ -150,24 +149,45 @@ Lake_Nutrients_processed <- Lake_Nutrients_Raw %>%
 
 Create a second R chunk to create a summary dataset with the mean, minimum, maximum, and standard deviation of total nitrogen concentrations for each lake. Create a second summary dataset that is identical except that it evaluates total phosphorus. Customize the chunk options such that the code is run but not displayed in the final document.
 ```{r second, include=FALSE}
-summarise(Lake_Nutrients_processed)
+nitrogen_summary<-Lake_Nutrients_processed %>%
+  group_by(lakename) %>%
+  summarise(meanNitrogen=mean(Lake_Nutrients_processed$tn_ug), 
+            stdevNitrogen=sd(Lake_Nutrients_processed$tn_ug), 
+            minNitrogen=min(Lake_Nutrients_processed$tn_ug), 
+            maxNitrogen=max(Lake_Nutrients_processed$tn_ug))
+
+nitrogen_summary
+
+phos_summary<-Lake_Nutrients_processed %>%
+  group_by(lakename) %>%
+  summarise(meanPhos=mean(Lake_Nutrients_processed$tp_ug), 
+            stdevPhos=sd(Lake_Nutrients_processed$tp_ug), 
+            minPhos=min(Lake_Nutrients_processed$tp_ug), 
+            maxPhos=max(Lake_Nutrients_processed$tp_ug))
+phos_summary
 
 ```
 
 Create a third R chunk that uses the function `kable` in the knitr package to display two tables: one for the summary dataframe for total N and one for the summary dataframe of total P. Use the `caption = " "` code within that function to title your tables. Customize the chunk options such that the final table is displayed but not the code used to generate the table.
 ```{r third}
-
+kable(nitrogen_summary, caption="Nitrogen Summary Table")
+kable(phos_summary, caption="Phosphorus Summary Table")
 ```
 
 Create a fourth and fifth R chunk that generates two plots (one in each chunk): one for total N over time with different colors for each lake, and one with the same setup but for total P. Decide which geom option will be appropriate for your purpose, and select a color palette that is visually pleasing and accessible. Customize the chunk options such that the final figures are displayed but not the code used to generate the figures. In addition, customize the chunk options such that the figures are aligned on the left side of the page. Lastly, add a fig.cap chunk option to add a caption (title) to your plot that will display underneath the figure.
 
-```{r fourth}
+```{r fourth, echo=FALSE, fig.align='left', fig.cap="Total Nitrogen Over Time by Lake"}
+Nplot<-ggplot(Lake_Nutrients_processed, aes(x=Date, y=tn_ug, color=lakename))+
+  geom_point(alpha=0.5) + ylab('Total Nitrogen (ug)') + labs(color='Lake Name')
+print(Nplot)
 
 ```
 
 
-```{r fifth}
-
+```{r fifth,  echo=FALSE, fig.align='left', fig.cap="Total Phosphorus Over Time by Lake"}
+Pplot<-ggplot(Lake_Nutrients_processed, aes(x=Date, y=tp_ug, color=lakename))+
+  geom_point(alpha=0.5) +  ylab('Total Phosphorus (ug)') + labs(color='Lake Name')
+print(Pplot)
 ```
 
 ### Communicating results
